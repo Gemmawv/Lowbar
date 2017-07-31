@@ -38,9 +38,27 @@ describe('_', function () {
       expect(_.first({ a: 5, b: 4, c: 3, d: 2, e: 1 })).to.be.undefined;
       expect(_.first({ a: 5, b: 4, c: 3, d: 2, e: 1 }, 2)).to.be.undefined;
     });
-    it('should return the stated number of elements in an array or string where a second argument is given', function () {
+    it('should return the stated number of elements from the start of an array or string where a second argument is given', function () {
       expect(_.first([5, 4, 3, 2, 1], 3)).to.eql([5, 4, 3]);
       expect(_.first('Gemma', 3)).to.eql(['G', 'e', 'm']);
+    });
+  });
+  describe('#last', function () {
+    it('is a function', function () {
+      expect(_.first).to.be.a('function');
+    });
+    it('should return the last element in array or string', function () {
+      expect(_.last([5, 4, 3, 2, 1])).to.eql(1);
+      expect(_.last('Gemma')).to.equal('a');
+    });
+    it('should not accept an invalid data type', function () {
+      expect(_.last(123)).to.be.undefined;
+      expect(_.last(false)).to.be.undefined;
+      expect(_.last({ a: 5, b: 4, c: 3, d: 2, e: 1 })).to.be.undefined;
+    });
+    it ('should return the stated number of elements from the end of an array or string when a second argument is given', function () {
+      expect(_.last([5, 4, 3, 2, 1], 3)).to.eql([3, 2, 1]);
+      expect(_.last('Gemma', 3)).to.eql(['m', 'm', 'a']);
     });
   });
 });
