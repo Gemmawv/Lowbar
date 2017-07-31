@@ -14,5 +14,12 @@ describe('_', function () {
     it('is a function', function() {
       expect(_.identity).to.be.a('function');
     });
+    it('should return the value given', function () {
+      expect(_.identity(98765)).to.equal(98765);
+      expect(_.identity('Gemma')).to.equal('Gemma');
+      expect(_.identity(true)).to.equal(true);
+      expect(_.identity([1, 2, 3])).to.eql([1, 2, 3]);
+      expect(_.identity({a:'one', b:'two', c:'three'})).to.eql({a:'one', b:'two', c:'three'});
+    });
   });
 });
