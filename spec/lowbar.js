@@ -32,8 +32,15 @@ describe('_', function () {
     });
     it('should not accept an invalid data type', function () {
       expect(_.first(379)).to.be.undefined;
+      expect(_.first(379, 2)).to.be.undefined;
       expect(_.first(true)).to.be.undefined;
-      expect(_.first({a:5, b:4, c:3, d:2, e:1})).to.be.undefined;
+      expect(_.first(true, 1)).to.be.undefined;
+      expect(_.first({ a: 5, b: 4, c: 3, d: 2, e: 1 })).to.be.undefined;
+      expect(_.first({ a: 5, b: 4, c: 3, d: 2, e: 1 }, 2)).to.be.undefined;
+    });
+    it('should return the stated number of elements in an array or string where a second argument is given', function () {
+      expect(_.first([5, 4, 3, 2, 1], 3)).to.eql([5, 4, 3]);
+      expect(_.first('Gemma', 3)).to.eql(['G', 'e', 'm']);
     });
   });
 });
