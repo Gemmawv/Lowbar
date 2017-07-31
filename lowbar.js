@@ -12,6 +12,8 @@ _.first = function (arr, num) {
 
 _.last = function (arr, num) {
   if (!num && Array.isArray(arr) || !num && typeof arr === 'string') return arr[arr.length - 1];
+  else if (Array.isArray(arr)) return arr.slice(num - 1);
+  else if (typeof arr === 'string') return arr.split('').slice(num - 1);
 };
 
 if (typeof module !== 'undefined') {
