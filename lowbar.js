@@ -10,6 +10,10 @@ _.first = function (arr, num) {
   else if (typeof arr === 'string') return arr.split('').slice(0, num);
 };
 
+_.last = function (arr, num) {
+  if (!num && Array.isArray(arr) || !num && typeof arr === 'string') return arr[arr.length - 1];
+};
+
 if (typeof module !== 'undefined') {
   module.exports = _;
 }
