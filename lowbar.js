@@ -16,6 +16,23 @@ _.last = function (arr, num) {
   else if (typeof arr === 'string') return arr.split('').slice(num - 1);
 };
 
+_.each = function (list, iteratee) {
+  if (!iteratee) return list;
+  else if (Array.isArray(list) || typeof list === 'string') {
+    for (var i = 0; i < list.length; i++) {
+      iteratee(list[i]);
+    }
+    return list;
+  }
+  else if (typeof list === 'object' && list !== null) {
+    for (var key in list) {
+      iteratee(list[key]);
+    }
+    return list;
+  }
+  else return list;
+};
+
 if (typeof module !== 'undefined') {
   module.exports = _;
 }
