@@ -35,16 +35,14 @@ _.each = function (list, iteratee) {
 
 _.indexOf = function (array, value) {
   let index = -1;
-  if (Array.isArray(array)) {
+  if (Array.isArray(array) || typeof array === 'string') {
     for (let i = 0; i < array.length; i++) {
       if (array[i] === value) index = i;
     }
-    return index;
   }
-    
-   // if(typeof array === 'string')
-  };
+  return index;
+};
 
-  if (typeof module !== 'undefined') {
-    module.exports = _;
-  }
+if (typeof module !== 'undefined') {
+  module.exports = _;
+}
