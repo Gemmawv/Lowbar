@@ -93,4 +93,13 @@ describe('_', function () {
       expect(count).to.equal(0);
     });
   });
+  describe('#indexOf', function () {
+    it('is a function', function () {
+      expect(_.indexOf).to.be.a('function');
+    });
+    it('should return the index at which the value can be found in the array or -1 if value is not present in the array', function () {
+      expect(_.indexOf([1,2,3,4,5], 4)).to.equal(3);
+      expect(_.indexOf([2,4,6,8,10], 3)).to.equal(-1);
+    });
+  });
 });
