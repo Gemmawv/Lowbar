@@ -6,33 +6,45 @@ _.identity = function (value) {
 
 _.first = function (arr, num) {
   if (!num && Array.isArray(arr) || !num && typeof arr === 'string') return arr[0];
-  else if (Array.isArray(arr)) return arr.slice(0, num);
-  else if (typeof arr === 'string') return arr.split('').slice(0, num);
+  if (Array.isArray(arr)) return arr.slice(0, num);
+  if (typeof arr === 'string') return arr.split('').slice(0, num);
 };
 
 _.last = function (arr, num) {
   if (!num && Array.isArray(arr) || !num && typeof arr === 'string') return arr[arr.length - 1];
-  else if (Array.isArray(arr)) return arr.slice(num - 1);
-  else if (typeof arr === 'string') return arr.split('').slice(num - 1);
+  if (Array.isArray(arr)) return arr.slice(num - 1);
+  if (typeof arr === 'string') return arr.split('').slice(num - 1);
 };
 
 _.each = function (list, iteratee) {
   if (!iteratee) return list;
-  else if (Array.isArray(list) || typeof list === 'string') {
+  if (Array.isArray(list) || typeof list === 'string') {
     for (var i = 0; i < list.length; i++) {
       iteratee(list[i]);
     }
     return list;
   }
-  else if (typeof list === 'object' && list !== null) {
+  if (typeof list === 'object' && list !== null) {
     for (var key in list) {
       iteratee(list[key]);
     }
     return list;
   }
-  else return list;
+  return list;
 };
 
-if (typeof module !== 'undefined') {
-  module.exports = _;
-}
+_.indexOf = function (array, value) {
+  let index = -1;
+  if (Array.isArray(array)) {
+    for (let i = 0; i < array.length; i++) {
+      if (array[i] === value) index = i;
+    }
+    return index;
+  }
+    
+   // if(typeof array === 'string')
+  };
+
+  if (typeof module !== 'undefined') {
+    module.exports = _;
+  }
