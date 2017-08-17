@@ -101,5 +101,14 @@ describe('_', function () {
       expect(_.indexOf([1,2,3,4,5], 4)).to.equal(3);
       expect(_.indexOf([2,4,6,8,10], 3)).to.equal(-1);
     });
+    it('should return the index at which the value can be found in the string or -1 if value is not present in the string', function () {
+      expect(_.indexOf('Gemma', 'a')).to.equal(4);
+      expect(_.indexOf('Northcoders', 'b')).to.equal(-1);
+    });
+    it('should return -1 if given an invalid data type', function () {
+      expect(_.indexOf({a:1, b:2, c:3}, 3)).to.equal(-1);
+      expect(_.indexOf(12345, 5)).to.equal(-1);
+      expect(_.indexOf(true, true)).to.equal(-1);
+    });
   });
 });
