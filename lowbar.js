@@ -33,14 +33,31 @@ _.each = function (list, iteratee) {
   return list;
 };
 
-_.indexOf = function (array, value) {
-  let index = -1;
-  if (Array.isArray(array) || typeof array === 'string') {
+_.indexOf = function (array, value, isSorted) {
+  isSorted = isSorted || false;
+  if ((Array.isArray(array) || typeof array === 'string') && isSorted === false) {
     for (let i = 0; i < array.length; i++) {
-      if (array[i] === value) index = i;
+      if (array[i] === value) return i;
     }
   }
-  return index;
+
+  if ((Array.isArray(array) || typeof array === 'string') && isSorted === true) {
+    let start = 0;
+    let end = array.length - 1;
+    let mid;
+    while (end >= start) {
+      mid = Math.floor((start + end) / 2);
+      if (array[mid] === value) {
+        return mid;
+      }
+      else if (array[mid] < value) {
+        start = mid + 1;
+      } else {
+        end = mid - 1;
+      }
+    }
+  }
+  return -1;
 };
 
 if (typeof module !== 'undefined') {
