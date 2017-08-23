@@ -157,6 +157,11 @@ describe('_', function () {
     it('is a function', function () {
       expect(_.uniq).to.be.a('function');
     });
+    it('should return an empty array when given an invalid data type', function () {
+      expect(_.uniq({a:2, b:2, c:1, d:3, e:4, f:3})).to.eql([]);
+      expect(_.uniq(13212)).to.eql([]);
+      expect(_.uniq(true, true, false)).to.eql([]);
+    });
     it('should produce a duplicate free version of the array in which only the first instance of each value is kept', function () {
       expect(_.uniq([1, 2, 1, 4, 1, 3])).to.eql([1, 2, 4, 3]);
     });
