@@ -80,10 +80,10 @@ _.reject = function (list, predicate) {
   return filteredList;
 };
 
-_.uniq = function (array) {
+_.uniq = function (array, isSorted) {
   let uniqueList = [];
     for (let i = 0; i < array.length; i++) {
-      if (_.indexOf(uniqueList, array[i]) === -1) {
+      if (_.indexOf(uniqueList, array[i], isSorted) === -1) {
         uniqueList.push(array[i]);
       }
     }
