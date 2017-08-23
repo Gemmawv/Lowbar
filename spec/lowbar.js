@@ -166,9 +166,19 @@ describe('_', function () {
       expect(_.uniq([1, 2, 1, 4, 1, 3])).to.eql([1, 2, 4, 3]);
       expect(_.uniq([31, 32, 32, 34, 41, 41])).to.eql([31, 32, 34, 41]);
     });
+    it('should produce a duplicate free version of the array when given a second isSorted argument', function () {
+      expect(_.uniq([1, 2, 1, 4, 1, 3], false)).to.eql([1, 2, 4, 3]);      
+      expect(_.uniq([31, 32, 32, 34, 41, 41], true)).to.eql([31, 32, 34, 41]);
+      expect(_.uniq([111, 123, 123, 156, 159, 191, 191], true)).to.eql([111, 123, 156, 159, 191]);      
+    });
     it('should produce a duplicate free version of the string in which only the first instance of each value is kept', function () {
       expect(_.uniq('Only unique values please!')).to.eql(['O', 'n', 'l', 'y', ' ', 'u', 'i', 'q', 'e', 'v', 'a', 's', 'p', '!']);
       expect(_.uniq('abbcddddefffghh')).to.eql(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']);
+    });
+    it('should produce a duplicate free version of the string when given a second isSorted argument', function () {
+      expect(_.uniq('Only unique values please!', false)).to.eql(['O', 'n', 'l', 'y', ' ', 'u', 'i', 'q', 'e', 'v', 'a', 's', 'p', '!']);
+      expect(_.uniq('abbcddddefffghh', true)).to.eql(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']);
+      expect(_.uniq('wxxxxxxxxxxxxyz', true)).to.eql(['w', 'x', 'y', 'z']);
     });
   });
 });
