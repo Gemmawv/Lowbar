@@ -60,6 +60,17 @@ _.indexOf = function (array, value, isSorted) {
   return -1;
 };
 
+_.filter = function (list, predicate) {
+  let filteredList = [];
+  _.each(list, function (item) {
+    if (predicate(item)) {
+      filteredList.push(item);
+    }
+  });
+  return filteredList;
+};
+
+
 if (typeof module !== 'undefined') {
   module.exports = _;
 }
