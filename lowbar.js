@@ -70,6 +70,25 @@ _.filter = function (list, predicate) {
   return filteredList;
 };
 
+_.reject = function (list, predicate) {
+  let filteredList = [];
+  _.each(list, function (item) {
+    if (predicate(item) === false) {
+      filteredList.push(item);
+    }
+  });
+  return filteredList;
+};
+
+_.uniq = function (array) {
+  let uniqueList = [];
+    for (let i = 0; i < array.length; i++) {
+      if (_.indexOf(uniqueList, array[i]) === -1) {
+        uniqueList.push(array[i]);
+      }
+    }
+  return uniqueList;
+};
 
 if (typeof module !== 'undefined') {
   module.exports = _;
