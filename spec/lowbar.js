@@ -77,7 +77,7 @@ describe('_', function () {
     });
     it('should iterate over an object of elements, yielding each in turn to the iteratee function provided', function () {
       var count = 0;
-      _.each({a:1, b:2, c:3}, function () { return count += 1; });
+      _.each({ a: 1, b: 2, c: 3 }, function () { return count += 1; });
       expect(count).to.equal(3);
     });
     it('should iterate over a string, yielding each character in turn to the iteratee function provided', function () {
@@ -98,20 +98,20 @@ describe('_', function () {
       expect(_.indexOf).to.be.a('function');
     });
     it('should return -1 if given an invalid data type', function () {
-      expect(_.indexOf({a:1, b:2, c:3}, 3)).to.equal(-1);
+      expect(_.indexOf({ a: 1, b: 2, c: 3 }, 3)).to.equal(-1);
       expect(_.indexOf(12345, 5)).to.equal(-1);
       expect(_.indexOf(true, true)).to.equal(-1);
     });
     it('should return the index at which the value can be found in the array or -1 if value is not present in the array', function () {
-      expect(_.indexOf([1,2,3,4,5], 4)).to.equal(3);
-      expect(_.indexOf([2,4,6,8,10], 3)).to.equal(-1);
-      expect(_.indexOf([3,6,9,12,15,18], 6)).to.equal(1);
+      expect(_.indexOf([1, 2, 3, 4, 5], 4)).to.equal(3);
+      expect(_.indexOf([2, 4, 6, 8, 10], 3)).to.equal(-1);
+      expect(_.indexOf([3, 6, 9, 12, 15, 18], 6)).to.equal(1);
     });
     it('should return the index at which the value can be found in the array when given a third isSorted argument. Returns -1 if value is not present in the array', function () {
-      expect(_.indexOf([1,2,3,4,5], 4, true)).to.equal(3);
-      expect(_.indexOf([2,4,6,8,10], 3, true)).to.equal(-1);
-      expect(_.indexOf([3,6,9,12,15,18], 6, true)).to.equal(1);
-      expect(_.indexOf([12,6,9,1,45], 6, false)).to.equal(1);      
+      expect(_.indexOf([1, 2, 3, 4, 5], 4, true)).to.equal(3);
+      expect(_.indexOf([2, 4, 6, 8, 10], 3, true)).to.equal(-1);
+      expect(_.indexOf([3, 6, 9, 12, 15, 18], 6, true)).to.equal(1);
+      expect(_.indexOf([12, 6, 9, 1, 45], 6, false)).to.equal(1);
     });
     it('should return the index at which the value can be found in the string or -1 if value is not present in the string', function () {
       expect(_.indexOf('abcde', 'e')).to.equal(4);
@@ -122,7 +122,15 @@ describe('_', function () {
       expect(_.indexOf('ABC', 'A', true)).to.equal(0);
       expect(_.indexOf('wxyz', 'b', true)).to.equal(-1);
       expect(_.indexOf('abcdefghij', 'g', true)).to.equal(6);
-      expect(_.indexOf('Thundercats', 'u', false)).to.equal(2);            
+      expect(_.indexOf('Thundercats', 'u', false)).to.equal(2);
+    });
+  });
+  describe('#filter', function () {
+    it('is a function', function () {
+      expect(_.filter).to.be.a('function');
+    });
+    it('should return a filtered list containing only the values that pass the truth test (predicate)', function () {
+      expect(_.filter([1, 2, 3, 4, 5, 6], function (num) { return num % 2 == 0; })).to.eql([2, 4, 6]);
     });
   });
 });
