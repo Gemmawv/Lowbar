@@ -129,8 +129,14 @@ describe('_', function () {
     it('is a function', function () {
       expect(_.filter).to.be.a('function');
     });
+    it('should return an empty array when provided with an invalid data type', function () {
+      expect(_.filter(123, function(num) { return num > 2; })).to.eql([]);
+      expect(_.filter(true, function(bool) { return bool === true; })).to.eql([]);
+    });
     it('should return a filtered list containing only the values that pass the truth test (predicate)', function () {
-      expect(_.filter([1, 2, 3, 4, 5, 6], function (num) { return num % 2 == 0; })).to.eql([2, 4, 6]);
+      expect(_.filter([1, 2, 3, 4, 5, 6], function (num) { return num % 2 === 0; })).to.eql([2, 4, 6]);
+      expect(_.filter({a:1, b:2, c:3, d:4, e:5, f:6}, function (num) { return num % 2 !== 0; })).to.eql([1, 3, 5]);
+      expect(_.filter('Gemma', function(char) { return char === 'm'; })).to.eql(['m', 'm']);
     });
   });
 });
