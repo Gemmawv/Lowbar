@@ -82,13 +82,21 @@ _.reject = function (list, predicate) {
 
 _.uniq = function (array, isSorted) {
   let uniqueList = [];
-    for (let i = 0; i < array.length; i++) {
-      if (_.indexOf(uniqueList, array[i], isSorted) === -1) {
-        uniqueList.push(array[i]);
-      }
+  for (let i = 0; i < array.length; i++) {
+    if (_.indexOf(uniqueList, array[i], isSorted) === -1) {
+      uniqueList.push(array[i]);
     }
+  }
   return uniqueList;
 };
+
+_.contains = function (list, value) {
+  if (_.indexOf(list, value) !== -1) {
+    return true;
+  }
+  return false;
+};
+
 
 if (typeof module !== 'undefined') {
   module.exports = _;
