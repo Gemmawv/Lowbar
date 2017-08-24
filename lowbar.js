@@ -90,15 +90,20 @@ _.uniq = function (array, isSorted) {
   return uniqueList;
 };
 
-_.contains = function (list, value) {
+_.contains = function (list, value, fromIndex) {
+  if (Array.isArray(list) || typeof list === 'string') {
+    fromIndex = fromIndex || 0;
+    let slicedList = list.slice(fromIndex);
+    if (_.indexOf(slicedList, value) === -1) return false;
+    return true;
+  }
+
   if (typeof list === 'object' && list !== null) {
     for (let key in list) {
       if (list[key] === value) return true;
     }
   }
-  if (_.indexOf(list, value) !== -1) {
-    return true;
-  }
+  
   return false;
 };
 
