@@ -130,13 +130,13 @@ describe('_', function () {
       expect(_.filter).to.be.a('function');
     });
     it('should return an empty array when provided with an invalid data type', function () {
-      expect(_.filter(123, function(num) { return num > 2; })).to.eql([]);
-      expect(_.filter(true, function(bool) { return bool === true; })).to.eql([]);
+      expect(_.filter(123, function (num) { return num > 2; })).to.eql([]);
+      expect(_.filter(true, function (bool) { return bool === true; })).to.eql([]);
     });
     it('should return a filtered list containing only the values that pass the truth test (predicate)', function () {
       expect(_.filter([1, 2, 3, 4, 5, 6], function (num) { return num % 2 === 0; })).to.eql([2, 4, 6]);
-      expect(_.filter({a:1, b:2, c:3, d:4, e:5, f:6}, function (num) { return num % 2 !== 0; })).to.eql([1, 3, 5]);
-      expect(_.filter('Gemma', function(char) { return char === 'm'; })).to.eql(['m', 'm']);
+      expect(_.filter({ a: 1, b: 2, c: 3, d: 4, e: 5, f: 6 }, function (num) { return num % 2 !== 0; })).to.eql([1, 3, 5]);
+      expect(_.filter('Gemma', function (char) { return char === 'm'; })).to.eql(['m', 'm']);
     });
   });
   describe('#reject', function () {
@@ -144,12 +144,12 @@ describe('_', function () {
       expect(_.reject).to.be.a('function');
     });
     it('should return an empty array when provided with an invalid data type', function () {
-      expect(_.reject(123, function(num) { return num < 2; })).to.eql([]);
-      expect(_.reject(false, function(bool) { return bool === true; })).to.eql([]);
+      expect(_.reject(123, function (num) { return num < 2; })).to.eql([]);
+      expect(_.reject(false, function (bool) { return bool === true; })).to.eql([]);
     });
     it('should return all values in the list that do not pass the truth test (predicate)', function () {
-      expect(_.reject([1, 2, 3, 4, 5, 6], function(num) { return num % 2 === 0; })).to.eql([1, 3, 5]);
-      expect(_.reject({a:1, b:2, c:3, d:4, e:5, f:6}, function (num) { return num % 2 !== 0; })).to.eql([2, 4, 6]);
+      expect(_.reject([1, 2, 3, 4, 5, 6], function (num) { return num % 2 === 0; })).to.eql([1, 3, 5]);
+      expect(_.reject({ a: 1, b: 2, c: 3, d: 4, e: 5, f: 6 }, function (num) { return num % 2 !== 0; })).to.eql([2, 4, 6]);
       expect(_.reject('Northcoders', function (char) { return char === 'o'; })).to.eql(['N', 'r', 't', 'h', 'c', 'd', 'e', 'r', 's']);
     });
   });
@@ -158,7 +158,7 @@ describe('_', function () {
       expect(_.uniq).to.be.a('function');
     });
     it('should return an empty array when given an invalid data type', function () {
-      expect(_.uniq({a:2, b:2, c:1, d:3, e:4, f:3})).to.eql([]);
+      expect(_.uniq({ a: 2, b: 2, c: 1, d: 3, e: 4, f: 3 })).to.eql([]);
       expect(_.uniq(13212)).to.eql([]);
       expect(_.uniq(true, true, false)).to.eql([]);
     });
@@ -167,9 +167,9 @@ describe('_', function () {
       expect(_.uniq([31, 32, 32, 34, 41, 41])).to.eql([31, 32, 34, 41]);
     });
     it('should produce a duplicate free version of the array when given a second isSorted argument', function () {
-      expect(_.uniq([1, 2, 1, 4, 1, 3], false)).to.eql([1, 2, 4, 3]);      
+      expect(_.uniq([1, 2, 1, 4, 1, 3], false)).to.eql([1, 2, 4, 3]);
       expect(_.uniq([31, 32, 32, 34, 41, 41], true)).to.eql([31, 32, 34, 41]);
-      expect(_.uniq([111, 123, 123, 156, 159, 191, 191], true)).to.eql([111, 123, 156, 159, 191]);      
+      expect(_.uniq([111, 123, 123, 156, 159, 191, 191], true)).to.eql([111, 123, 156, 159, 191]);
     });
     it('should produce a duplicate free version of the string in which only the first instance of each value is kept', function () {
       expect(_.uniq('Only unique values please!')).to.eql(['O', 'n', 'l', 'y', ' ', 'u', 'i', 'q', 'e', 'v', 'a', 's', 'p', '!']);
@@ -179,6 +179,14 @@ describe('_', function () {
       expect(_.uniq('Only unique values please!', false)).to.eql(['O', 'n', 'l', 'y', ' ', 'u', 'i', 'q', 'e', 'v', 'a', 's', 'p', '!']);
       expect(_.uniq('abbcddddefffghh', true)).to.eql(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']);
       expect(_.uniq('wxxxxxxxxxxxxyz', true)).to.eql(['w', 'x', 'y', 'z']);
+    });
+  });
+  describe('#contains', function () {
+    it('is a function', function () {
+      expect(_.contains).to.be.a('function');
+    });
+    it('should return true if the value is present in the list', function () {
+      expect(_.contains([1, 2, 3], 3)).to.equal(true);
     });
   });
 });
