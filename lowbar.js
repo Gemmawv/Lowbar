@@ -91,6 +91,11 @@ _.uniq = function (array, isSorted) {
 };
 
 _.contains = function (list, value) {
+  if (typeof list === 'object' && list !== null) {
+    for (let key in list) {
+      if (list[key] === value) return true;
+    }
+  }
   if (_.indexOf(list, value) !== -1) {
     return true;
   }
