@@ -192,12 +192,20 @@ describe('_', function () {
     it('should return true if the value is present in the list or string', function () {
       expect(_.contains([1, 2, 3], 3)).to.equal(true);
       expect(_.contains('elephant', 't')).to.equal(true);
-      expect(_.contains({a:21, b:22, c:23}, 21)).to.equal(true);
+      expect(_.contains({ a: 21, b: 22, c: 23 }, 21)).to.equal(true);
     });
     it('should return false if the value is not present in the list or string', function () {
       expect(_.contains([2, 4, 6], 5)).to.equal(false);
       expect(_.contains('zebra', 's')).to.equal(false);
-      expect(_.contains({a:14, b:25, c:3}, 29)).to.equal(false);
+      expect(_.contains({ a: 14, b: 25, c: 3 }, 29)).to.equal(false);
+    });
+    it('should return the correct result when a third fromIndex argument is given', function () {
+      expect(_.contains([2, 4, 6, 8, 10, 12, 14], 12, 3)).to.equal(true);
+      expect(_.contains([22, 41, 6, 110, 44, 17, 3], 41, 3)).to.equal(false);      
+      expect(_.contains([22, 41, 6, 110, 44, 17, 3], 105, 2)).to.equal(false);            
+      expect(_.contains('hippopotamus','s', 5)).to.equal(true);
+      expect(_.contains('hippopotamus','p', 6)).to.equal(false);      
+      expect(_.contains('hippopotamus','l', 3)).to.equal(false);            
     });
   });
 });
