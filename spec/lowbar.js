@@ -185,6 +185,10 @@ describe('_', function () {
     it('is a function', function () {
       expect(_.contains).to.be.a('function');
     });
+    it('should return false if given an invalid data type', function () {
+      expect(_.contains(123, 3)).to.equal(false);
+      expect(_.contains(false, false)).to.equal(false);
+    });
     it('should return true if the value is present in the list', function () {
       expect(_.contains([1, 2, 3], 3)).to.equal(true);
     });
