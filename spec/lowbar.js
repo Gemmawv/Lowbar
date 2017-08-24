@@ -189,8 +189,13 @@ describe('_', function () {
       expect(_.contains(123, 3)).to.equal(false);
       expect(_.contains(false, false)).to.equal(false);
     });
-    it('should return true if the value is present in the list', function () {
+    it('should return true if the value is present in the list or string', function () {
       expect(_.contains([1, 2, 3], 3)).to.equal(true);
+      expect(_.contains('elephant', 't')).to.equal(true);
+    });
+    it('should return false if the value is not present in the list or string', function () {
+      expect(_.contains([2, 4, 6], 5)).to.equal(false);
+      expect(_.contains('zebra', 's')).to.equal(false);
     });
   });
 });
