@@ -181,6 +181,14 @@ describe('_', function () {
       expect(_.uniq('wxxxxxxxxxxxxyz', true)).to.eql(['w', 'x', 'y', 'z']);
     });
   });
+  describe('#map', function () {
+    it('is a function', function () {
+      expect(_.map).to.be.a('function');
+    });
+    it('should produce a new array of values by mapping each value in the list through a transformation function (iteratee)', function () {
+      expect(_.map([1, 2, 3], function (num) { return num * 3; })).to.eql([3, 6, 9]);
+    });
+  });
   describe('#contains', function () {
     it('is a function', function () {
       expect(_.contains).to.be.a('function');
