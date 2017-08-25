@@ -10,6 +10,7 @@ describe('_', function () {
   it('is an object', function () {
     expect(_).to.be.an('object');
   });
+  
   describe('#identity', function () {
     it('is a function', function () {
       expect(_.identity).to.be.a('function');
@@ -22,6 +23,7 @@ describe('_', function () {
       expect(_.identity({ a: 'one', b: 'two', c: 'three' })).to.eql({ a: 'one', b: 'two', c: 'three' });
     });
   });
+  
   describe('#first', function () {
     it('is a function', function () {
       expect(_.first).to.be.a('function');
@@ -43,6 +45,7 @@ describe('_', function () {
       expect(_.first('Gemma', 3)).to.eql(['G', 'e', 'm']);
     });
   });
+  
   describe('#last', function () {
     it('is a function', function () {
       expect(_.first).to.be.a('function');
@@ -61,6 +64,7 @@ describe('_', function () {
       expect(_.last('Gemma', 3)).to.eql(['m', 'm', 'a']);
     });
   });
+  
   describe('#each', function () {
     it('is a function', function () {
       expect(_.each).to.be.a('function');
@@ -93,6 +97,7 @@ describe('_', function () {
       expect(count).to.equal(0);
     });
   });
+  
   describe('#indexOf', function () {
     it('is a function', function () {
       expect(_.indexOf).to.be.a('function');
@@ -125,6 +130,7 @@ describe('_', function () {
       expect(_.indexOf('Thundercats', 'u', false)).to.equal(2);
     });
   });
+  
   describe('#filter', function () {
     it('is a function', function () {
       expect(_.filter).to.be.a('function');
@@ -139,6 +145,7 @@ describe('_', function () {
       expect(_.filter('Gemma', function (char) { return char === 'm'; })).to.eql(['m', 'm']);
     });
   });
+  
   describe('#reject', function () {
     it('is a function', function () {
       expect(_.reject).to.be.a('function');
@@ -153,6 +160,7 @@ describe('_', function () {
       expect(_.reject('Northcoders', function (char) { return char === 'o'; })).to.eql(['N', 'r', 't', 'h', 'c', 'd', 'e', 'r', 's']);
     });
   });
+  
   describe('#uniq', function () {
     it('is a function', function () {
       expect(_.uniq).to.be.a('function');
@@ -181,14 +189,18 @@ describe('_', function () {
       expect(_.uniq('wxxxxxxxxxxxxyz', true)).to.eql(['w', 'x', 'y', 'z']);
     });
   });
+  
   describe('#map', function () {
     it('is a function', function () {
       expect(_.map).to.be.a('function');
     });
     it('should produce a new array of values by mapping each value in the list through a transformation function (iteratee)', function () {
       expect(_.map([1, 2, 3], function (num) { return num * 3; })).to.eql([3, 6, 9]);
+      expect(_.map({a:23, b:99, c:14}, function (num) { return num - 2;})).to.eql([21, 97, 12]);
+      expect(_.map('abc', function (char) { return char === 'b'; })).to.eql([false, true, false]);
     });
   });
+  
   describe('#contains', function () {
     it('is a function', function () {
       expect(_.contains).to.be.a('function');
@@ -216,6 +228,7 @@ describe('_', function () {
       expect(_.contains('hippopotamus', 'l', 3)).to.equal(false);
     });
   });
+  
   describe('#reduce', function () {
     it('should be a function', function () {
       expect(_.reduce).to.be.a('function');
