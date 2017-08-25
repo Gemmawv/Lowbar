@@ -201,11 +201,19 @@ describe('_', function () {
     });
     it('should return the correct result when a third fromIndex argument is given', function () {
       expect(_.contains([2, 4, 6, 8, 10, 12, 14], 12, 3)).to.equal(true);
-      expect(_.contains([22, 41, 6, 110, 44, 17, 3], 41, 3)).to.equal(false);      
-      expect(_.contains([22, 41, 6, 110, 44, 17, 3], 105, 2)).to.equal(false);            
-      expect(_.contains('hippopotamus','s', 5)).to.equal(true);
-      expect(_.contains('hippopotamus','p', 6)).to.equal(false);      
-      expect(_.contains('hippopotamus','l', 3)).to.equal(false);            
+      expect(_.contains([22, 41, 6, 110, 44, 17, 3], 41, 3)).to.equal(false);
+      expect(_.contains([22, 41, 6, 110, 44, 17, 3], 105, 2)).to.equal(false);
+      expect(_.contains('hippopotamus', 's', 5)).to.equal(true);
+      expect(_.contains('hippopotamus', 'p', 6)).to.equal(false);
+      expect(_.contains('hippopotamus', 'l', 3)).to.equal(false);
+    });
+  });
+  describe('#reduce', function () {
+    it('should be a function', function () {
+      expect(_.reduce).to.be.a('function');
+    });
+    it('should reduce the list to a single value', function () {
+      expect(_.reduce([1, 2, 3], function(memo, num) { return memo + num; }, 0)).to.equal(6);
     });
   });
 });
