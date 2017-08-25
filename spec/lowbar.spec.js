@@ -194,6 +194,10 @@ describe('_', function () {
     it('is a function', function () {
       expect(_.map).to.be.a('function');
     });
+    it('should return an empty array if given an invalid data type', function () {
+      expect(_.map(10, function (num) { return num * 2;})).to.eql([]);
+      expect(_.map(true, function (bool) { return bool === true;})).to.eql([]);
+    });
     it('should produce a new array of values by mapping each value in the list through a transformation function (iteratee)', function () {
       expect(_.map([1, 2, 3], function (num) { return num * 3; })).to.eql([3, 6, 9]);
       expect(_.map({a:23, b:99, c:14}, function (num) { return num - 2;})).to.eql([21, 97, 12]);
