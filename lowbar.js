@@ -103,10 +103,16 @@ _.contains = function (list, value, fromIndex) {
       if (list[key] === value) return true;
     }
   }
-  
+
   return false;
 };
 
+_.reduce = function (list, iteratee, memo) {
+  _.each(list, function (item, i, list) {
+    memo = iteratee(memo, item, i, list);
+  });
+  return memo;
+};
 
 if (typeof module !== 'undefined') {
   module.exports = _;
