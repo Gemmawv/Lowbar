@@ -28,7 +28,7 @@ _.each = function (list, iteratee) {
     for (var key in list) {
       iteratee(list[key]);
     }
-    
+
   }
   return list;
 };
@@ -88,6 +88,14 @@ _.uniq = function (array, isSorted) {
     }
   }
   return uniqueList;
+};
+
+_.map = function (list, iteratee) {
+  let newList = [];
+  _.each(list, function (item, index, list) {
+    newList.push(iteratee(item, index, list));
+  });
+  return newList;
 };
 
 _.contains = function (list, value, fromIndex) {
