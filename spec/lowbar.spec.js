@@ -233,6 +233,16 @@ describe('_', function () {
     });
   });
   
+  describe('#pluck', function () {
+    it('should be a function', function () {
+      expect(_.pluck).to.be.a('function');
+    });
+    it('should return a list of property values whose key matches the propertyName given', function () {
+      var stooges = [{ name: 'moe', age: 40 }, { name: 'larry', age: 50 }, { name: 'curly', age: 60 }];
+      expect(_.pluck(stooges, 'name')).to.eql(['moe', 'larry', 'curly']);
+    });
+  });
+
   describe('#reduce', function () {
     it('should be a function', function () {
       expect(_.reduce).to.be.a('function');
