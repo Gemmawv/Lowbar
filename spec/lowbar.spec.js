@@ -275,8 +275,14 @@ describe('_', function () {
     it('should be a function', function () {
       expect(_.every).to.be.a('function');
     });
+    it('should return true when given an invalid data type', function () {
+      expect(_.every(400, function (num) { return num < 100; })).to.equal(true);
+      expect(_.every(false, function (bool) { return bool === true; })).to.equal(true);
+    });
     it('should return true if all values in the list pass the predicate truth test', function () {
       expect(_.every([2, 4, 6, 8], function (num) { return num % 2 === 0; })).to.equal(true);
+      expect(_.every({ a: 10, b: 20, c: 30 }, function (num) { return num > 10; })).to.equal(true);
+      expect(_.every('Nellie', function (char) { return char !== 'm'; })).to.equal(true);
     });
   });
 });
