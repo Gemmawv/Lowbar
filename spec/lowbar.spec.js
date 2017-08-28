@@ -241,7 +241,7 @@ describe('_', function () {
       expect(_.pluck(98765, 7)).to.eql([]);
       expect(_.pluck(true, true)).to.eql([]);
       expect(_.pluck('cat', 'a')).to.eql([undefined, undefined, undefined]);
-      let person = {name: 'zach', age: 40, occupation: 'hairdresser'};
+      let person = { name: 'zach', age: 40, occupation: 'hairdresser' };
       expect(_.pluck(person, 'occupation')).to.eql([undefined, undefined, undefined]);
     });
     it('should return a list of property values whose key matches the propertyName given', function () {
@@ -256,8 +256,18 @@ describe('_', function () {
     it('should be a function', function () {
       expect(_.reduce).to.be.a('function');
     });
+    it('should return memo if given an invalid data type', function () {
+      expect(_.reduce(123, function (memo, num) { return memo + num; }, 0)).to.equal(0);
+      expect(_.reduce(true, function (memo, bool) { if (bool === true) { return memo + 5; } }, 0)).to.equal(0);
+    });
     it('should reduce the list to a single value', function () {
       expect(_.reduce([1, 2, 3], function (memo, num) { return memo + num; }, 0)).to.equal(6);
+      expect(_.reduce({ a: 10, b: 20, c: 30 }, function (memo, num) { return memo + num; })).to.equal(60);
+      expect(_.reduce('Gemma', function (memo, char) { if (char === 'm') memo.push(char); return memo; }, [])).to.eql(['m', 'm']);
+    });
+    it('should use the first item in the list as memo if no memo is passed', function () {
+      expect(_.reduce([2, 4, 6, 8], function (memo, num) { return memo + num; })).to.equal(20);
+      expect(_.reduce({ a: 3, b: 6, c: 9 }, function (memo, num) { return memo + num; })).to.equal(18);
     });
   });
 });
