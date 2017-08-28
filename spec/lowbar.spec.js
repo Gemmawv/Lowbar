@@ -287,7 +287,16 @@ describe('_', function () {
     it('should return false if any value in the list does not pass the predicate truth test', function () {
       expect(_.every([1, 2, 3, 4, 5], function (num) { return num < 4; })).to.equal(false);
       expect(_.every({ a: 5, b: 10, c: 15 }, function (num) { return num % 2 === 0; })).to.equal(false);
-      expect(_.every('moonbeam', function (char) { return char === 'o'; })).to.equal(false);      
+      expect(_.every('moonbeam', function (char) { return char === 'o'; })).to.equal(false);
+    });
+  });
+
+  describe('#some', function () {
+    it('should be a function', function () {
+      expect(_.some).to.be.a('function');
+    });
+    it('should return true if any values in the list pass the predicate truth test', function () {
+      expect(_.some([2, 4, 5], function (num) { return num % 2 == 0; })).to.equal(true);
     });
   });
 });
