@@ -296,7 +296,14 @@ describe('_', function () {
       expect(_.some).to.be.a('function');
     });
     it('should return true if any values in the list pass the predicate truth test', function () {
-      expect(_.some([2, 4, 5], function (num) { return num % 2 == 0; })).to.equal(true);
+      expect(_.some([2, 4, 5], function (num) { return num % 2 === 0; })).to.equal(true);
+      expect(_.some('yellow', function (char) { return char === 'l'; })).to.equal(true);
+      expect(_.some({ a: 2, b: 5, c: 10 }, function (num) { return num > 5; })).to.equal(true);
+    });
+    it('should return false if no values in the list pass the predicate truth test', function () {
+      expect(_.some([1, 3, 6], function (num) { return num > 9; })).to.equal(false);
+      expect(_.some('orange', function (char) { return char === 'l'; })).to.equal(false);
+      expect(_.some({ a: 3, b: 17, c: 10 }, function (num) { return num % 6 === 0; })).to.equal(false);
     });
   });
 });
