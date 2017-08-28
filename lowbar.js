@@ -142,7 +142,7 @@ _.every = function (list, predicate) {
   }
   else if (typeof list === 'object' && list !== null) {
     for (let key in list) {
-      if (predicate(list[key] === false)) return false;
+      if (predicate(list[key]) === false) return false;
     }
   }
   return true;
