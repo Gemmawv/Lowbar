@@ -134,6 +134,13 @@ _.reduce = function (list, iteratee, memo) {
   return memo;
 };
 
+_.every = function (list, predicate) {
+  for (let i = 0; i < list.length; i++) {
+    if (predicate(list[i]) === false) return false;
+  }
+  return true;
+};
+
 if (typeof module !== 'undefined') {
   module.exports = _;
 }
