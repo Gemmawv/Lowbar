@@ -10,7 +10,7 @@ describe('_', function () {
   it('is an object', function () {
     expect(_).to.be.an('object');
   });
-  
+
   describe('#identity', function () {
     it('is a function', function () {
       expect(_.identity).to.be.a('function');
@@ -23,7 +23,7 @@ describe('_', function () {
       expect(_.identity({ a: 'one', b: 'two', c: 'three' })).to.eql({ a: 'one', b: 'two', c: 'three' });
     });
   });
-  
+
   describe('#first', function () {
     it('is a function', function () {
       expect(_.first).to.be.a('function');
@@ -45,7 +45,7 @@ describe('_', function () {
       expect(_.first('Gemma', 3)).to.eql(['G', 'e', 'm']);
     });
   });
-  
+
   describe('#last', function () {
     it('is a function', function () {
       expect(_.first).to.be.a('function');
@@ -64,7 +64,7 @@ describe('_', function () {
       expect(_.last('Gemma', 3)).to.eql(['m', 'm', 'a']);
     });
   });
-  
+
   describe('#each', function () {
     it('is a function', function () {
       expect(_.each).to.be.a('function');
@@ -97,7 +97,7 @@ describe('_', function () {
       expect(count).to.equal(0);
     });
   });
-  
+
   describe('#indexOf', function () {
     it('is a function', function () {
       expect(_.indexOf).to.be.a('function');
@@ -130,7 +130,7 @@ describe('_', function () {
       expect(_.indexOf('Thundercats', 'u', false)).to.equal(2);
     });
   });
-  
+
   describe('#filter', function () {
     it('is a function', function () {
       expect(_.filter).to.be.a('function');
@@ -145,7 +145,7 @@ describe('_', function () {
       expect(_.filter('Gemma', function (char) { return char === 'm'; })).to.eql(['m', 'm']);
     });
   });
-  
+
   describe('#reject', function () {
     it('is a function', function () {
       expect(_.reject).to.be.a('function');
@@ -160,7 +160,7 @@ describe('_', function () {
       expect(_.reject('Northcoders', function (char) { return char === 'o'; })).to.eql(['N', 'r', 't', 'h', 'c', 'd', 'e', 'r', 's']);
     });
   });
-  
+
   describe('#uniq', function () {
     it('is a function', function () {
       expect(_.uniq).to.be.a('function');
@@ -189,22 +189,22 @@ describe('_', function () {
       expect(_.uniq('wxxxxxxxxxxxxyz', true)).to.eql(['w', 'x', 'y', 'z']);
     });
   });
-  
+
   describe('#map', function () {
     it('is a function', function () {
       expect(_.map).to.be.a('function');
     });
     it('should return an empty array if given an invalid data type', function () {
-      expect(_.map(10, function (num) { return num * 2;})).to.eql([]);
-      expect(_.map(true, function (bool) { return bool === true;})).to.eql([]);
+      expect(_.map(10, function (num) { return num * 2; })).to.eql([]);
+      expect(_.map(true, function (bool) { return bool === true; })).to.eql([]);
     });
     it('should produce a new array of values by mapping each value in the list through a transformation function (iteratee)', function () {
       expect(_.map([1, 2, 3], function (num) { return num * 3; })).to.eql([3, 6, 9]);
-      expect(_.map({a:23, b:99, c:14}, function (num) { return num - 2;})).to.eql([21, 97, 12]);
+      expect(_.map({ a: 23, b: 99, c: 14 }, function (num) { return num - 2; })).to.eql([21, 97, 12]);
       expect(_.map('abc', function (char) { return char === 'b'; })).to.eql([false, true, false]);
     });
   });
-  
+
   describe('#contains', function () {
     it('is a function', function () {
       expect(_.contains).to.be.a('function');
@@ -232,14 +232,23 @@ describe('_', function () {
       expect(_.contains('hippopotamus', 'l', 3)).to.equal(false);
     });
   });
-  
+
   describe('#pluck', function () {
     it('should be a function', function () {
       expect(_.pluck).to.be.a('function');
     });
+    it('should return an empty array or undefined if given an invalid data type', function () {
+      expect(_.pluck(98765, 7)).to.eql([]);
+      expect(_.pluck(true, true)).to.eql([]);
+      expect(_.pluck('cat', 'a')).to.eql([undefined, undefined, undefined]);
+      let person = {name: 'zach', age: 40, occupation: 'hairdresser'};
+      expect(_.pluck(person, 'occupation')).to.eql([undefined, undefined, undefined]);
+    });
     it('should return a list of property values whose key matches the propertyName given', function () {
-      var stooges = [{ name: 'moe', age: 40 }, { name: 'larry', age: 50 }, { name: 'curly', age: 60 }];
-      expect(_.pluck(stooges, 'name')).to.eql(['moe', 'larry', 'curly']);
+      let pets = [{ name: 'Nellie', age: 3 }, { name: 'Soo', age: 4 }, { name: 'Eric', age: 7 }];
+      expect(_.pluck(pets, 'name')).to.eql(['Nellie', 'Soo', 'Eric']);
+      let person = [{ name: 'Pat', age: 40, occupation: 'Postal worker' }];
+      expect(_.pluck(person, 'age')).to.eql([40]);
     });
   });
 
@@ -248,7 +257,7 @@ describe('_', function () {
       expect(_.reduce).to.be.a('function');
     });
     it('should reduce the list to a single value', function () {
-      expect(_.reduce([1, 2, 3], function(memo, num) { return memo + num; }, 0)).to.equal(6);
+      expect(_.reduce([1, 2, 3], function (memo, num) { return memo + num; }, 0)).to.equal(6);
     });
   });
 });
