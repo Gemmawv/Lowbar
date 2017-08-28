@@ -295,6 +295,10 @@ describe('_', function () {
     it('should be a function', function () {
       expect(_.some).to.be.a('function');
     });
+    it('should return false if given an invalid data type', function () {
+      expect(_.some(300, function (num) { return num > 100; })).to.equal(false);
+      expect(_.some(true, function (bool) { return bool === true; })).to.equal(false);
+    });
     it('should return true if any values in the list pass the predicate truth test', function () {
       expect(_.some([2, 4, 5], function (num) { return num % 2 === 0; })).to.equal(true);
       expect(_.some('yellow', function (char) { return char === 'l'; })).to.equal(true);
