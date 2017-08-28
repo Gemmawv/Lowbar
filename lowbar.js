@@ -148,6 +148,15 @@ _.every = function (list, predicate) {
   return true;
 };
 
+_.some = function (list, predicate) {
+if (Array.isArray(list) || typeof list === 'string') {
+  for (let i = 0; i < list.length; i++) {
+    if (predicate(list[i])) return true;
+  }
+  return false;
+}
+};
+
 if (typeof module !== 'undefined') {
   module.exports = _;
 }
