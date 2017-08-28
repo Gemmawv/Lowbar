@@ -281,8 +281,13 @@ describe('_', function () {
     });
     it('should return true if all values in the list pass the predicate truth test', function () {
       expect(_.every([2, 4, 6, 8], function (num) { return num % 2 === 0; })).to.equal(true);
-      expect(_.every({ a: 10, b: 20, c: 30 }, function (num) { return num > 10; })).to.equal(true);
+      expect(_.every({ a: 20, b: 30, c: 40 }, function (num) { return num > 10; })).to.equal(true);
       expect(_.every('Nellie', function (char) { return char !== 'm'; })).to.equal(true);
+    });
+    it('should return false if any value in the list does not pass the predicate truth test', function () {
+      expect(_.every([1, 2, 3, 4, 5], function (num) { return num < 4; })).to.equal(false);
+      expect(_.every({ a: 5, b: 10, c: 15 }, function (num) { return num % 2 === 0; })).to.equal(false);
+      expect(_.every('moonbeam', function (char) { return char === 'o'; })).to.equal(false);      
     });
   });
 });
