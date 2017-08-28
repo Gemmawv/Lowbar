@@ -26,7 +26,7 @@ _.each = function (list, iteratee) {
   }
   else if (typeof list === 'object' && list !== null) {
     for (var key in list) {
-      iteratee(list[key]);
+      iteratee(list[key], key, list);
     }
 
   }
@@ -113,6 +113,14 @@ _.contains = function (list, value, fromIndex) {
   }
 
   return false;
+};
+
+_.pluck = function (list, propertyName) {
+  return _.map(list, function (item, index, list) {
+    if (list[index].hasOwnProperty(propertyName)) {
+      return list[index][propertyName];
+    }
+  });
 };
 
 _.reduce = function (list, iteratee, memo) {
