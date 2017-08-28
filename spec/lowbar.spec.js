@@ -270,4 +270,13 @@ describe('_', function () {
       expect(_.reduce({ a: 3, b: 6, c: 9 }, function (memo, num) { return memo + num; })).to.equal(18);
     });
   });
+
+  describe('#every', function () {
+    it('should be a function', function () {
+      expect(_.every).to.be.a('function');
+    });
+    it('should return true if all values in the list pass the predicate truth test', function () {
+      expect(_.every([2, 4, 6, 8], function (num) { return num % 2 === 0; })).to.equal(true);
+    });
+  });
 });
