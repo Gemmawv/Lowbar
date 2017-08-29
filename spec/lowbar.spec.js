@@ -347,5 +347,8 @@ describe('_', function () {
     it('should be a function', function () {
       expect(_.defaults).to.be.a('function');
     });
+    it('should fill in undefined properties in object with the first value present in the list of defaults objects', function () {
+      expect(_.defaults({flavour: 'chocolate'}, {flavour: 'vanilla', sprinkles: 'lots'})).to.eql({flavour: 'chocolate', sprinkles: 'lots'});
+    });
   });
 });
