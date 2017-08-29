@@ -338,7 +338,7 @@ describe('_', function () {
       expect(_.extend({ type: 'chocolate', name: 'maltesers' }, { name: 'flake', price: '60p' }, { name: 'twirl' })).to.eql({ type: 'chocolate', name: 'twirl', price: '60p' });
     });
     it('should copy all of the properties in the source objects over to the destination array, and return the destination array', function () {
-      var expected = ['Nellie', 3];
+      let expected = ['Nellie', 3];
       expected.colour = 'tabby';
       expect(_.extend(['Nellie', 3], { colour: 'tabby' })).to.eql(expected);
     });
@@ -347,11 +347,29 @@ describe('_', function () {
     it('should be a function', function () {
       expect(_.defaults).to.be.a('function');
     });
-    it('should return the object with undefined properties filled in with the first value present in the default object', function () {
+    it('should return the object when given an invalid data type', function () {
+      expect(_.defaults(1234, 5678)).to.equal(1234);
+      expect(_.defaults(9876, { number: 5432 })).to.equal(9876);
+      expect(_.defaults('pineapple', 'coconut')).to.equal('pineapple');
+      expect(_.defaults('pineapple', { type: 'coconut' })).to.equal('pineapple');
+      expect(_.defaults(true, false)).to.equal(true);
+      expect(_.defaults(true, { isTrue: false })).to.equal(true);
+    });
+    it('should return the array with any unfilled index positions corresponding to index positions in any defaults array(s), being updated with those values', function () {
+      expect(_.defaults(['banana', 'coconut'], ['pineapple', 'orange', 'cauliflower', 'grapes'])).to.eql(['banana', 'coconut', 'cauliflower', 'grapes']);
+      expect(_.defaults(['gold'], ['gold', 'silver', 'bronze'], ['pink', 'purple', 'black', 'white'])).to.eql(['gold', 'silver', 'bronze', 'white']);
+      expect(_.defaults(['red', 'orange'], ['black', 'white', ['pink']], ['yellow'])).to.eql(['red', 'orange', ['pink']]);
+    });
+    it('should return the object with any undefined properties filled in with the first value present in the default object', function () {
       expect(_.defaults({ flavour: 'chocolate' }, { flavour: 'vanilla', sprinkles: 'lots' })).to.eql({ flavour: 'chocolate', sprinkles: 'lots' });
     });
     it('should return the object with undefined properties filled in with the first value present in a list of defaults objects', function () {
-      expect(_.defaults({ flavour: 'chocolate' }, { flavour: 'vanilla', sprinkles: 'lots' }, {flavour: 'pistachio', syrup: 'strawberry'})).to.eql({ flavour: 'chocolate', sprinkles: 'lots', syrup: 'strawberry'});
+      expect(_.defaults({ flavour: 'chocolate' }, { flavour: 'vanilla', sprinkles: 'lots' }, { flavour: 'pistachio', syrup: 'strawberry' })).to.eql({ flavour: 'chocolate', sprinkles: 'lots', syrup: 'strawberry' });
+    });
+    it('should return the array with any undefined values filled in with corresponding information from the defaults object(s)', function () {
+      let expected = ['cat', 'dog'];
+      expected.pet = 'parrot';
+      expect(_.defaults(['cat', 'dog'], {pet: 'parrot'})).to.eql(expected);
     });
   });
 });
