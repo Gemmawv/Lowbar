@@ -170,7 +170,12 @@ _.extend = function (destination) {
   return destination;
 };
 
-_.defaults = function (object) {
+_.defaults = function (object, defaults) {
+  for (let key in defaults) {
+    if (!object[key]) {
+      object[key] = defaults[key];
+    }
+  }
   return object;
 };
 
