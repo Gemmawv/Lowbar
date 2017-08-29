@@ -343,4 +343,9 @@ describe('_', function () {
       expect(_.extend(['Nellie', 3], { colour: 'tabby' })).to.eql(expected);
     });
   });
+  describe('#defaults', function () {
+    it('should be a function', function () {
+      expect(_.defaults).to.be.a('function');
+    });
+  });
 });
