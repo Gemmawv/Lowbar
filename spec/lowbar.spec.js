@@ -310,4 +310,12 @@ describe('_', function () {
       expect(_.some({ a: 3, b: 17, c: 10 }, function (num) { return num % 6 === 0; })).to.equal(false);
     });
   });
+  describe('#extend', function () {
+    it('should be a function', function () {
+      expect(_.extend).to.be.a('function');
+    });
+    it('should copy all of the properties in the source objects over to the destination object, and return the destination object', function () {
+      expect(_.extend({ name: 'Nellie' }, { age: 3 })).to.eql({ name: 'Nellie', age: 3 });
+    });
+  });
 });
