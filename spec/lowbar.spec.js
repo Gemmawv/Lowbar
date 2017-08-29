@@ -314,8 +314,33 @@ describe('_', function () {
     it('should be a function', function () {
       expect(_.extend).to.be.a('function');
     });
-    it('should copy all of the properties in the source objects over to the destination object, and return the destination object', function () {
-      expect(_.extend({ name: 'Nellie' }, { age: 3 })).to.eql({ name: 'Nellie', age: 3 });
+    it('should return destination if given an invalid data type', function () {
+      expect(_.extend(123, { num: 456 })).to.equal(123);
+      expect(_.extend(123, 456)).to.equal(123);
+      expect(_.extend('banana', { fruit: 'coconut' })).to.equal('banana');
+      expect(_.extend('banana', 'coconut')).to.equal('banana');
+      expect(_.extend(true, { bool: false })).to.equal(true);
+      expect(_.extend(true, false)).to.equal(true);
+    });
+    it('should replace a value in the destination array with the value of the same index from the source array(s). The last source will override properties of the same index in previous arguments', function () {
+      expect(_.extend(['purple', 'blue', 'green'], ['red'])).to.eql(['red', 'blue', 'green']);
+      expect(_.extend(['purple', 'blue', 'green'], ['red', 'orange'], ['yellow'])).to.eql(['yellow', 'orange', 'green']);
+      expect(_.extend(['red', 'orange', 'blue'], ['black', 'white', ['pink']], ['yellow'])).to.eql(['yellow', 'white', ['pink']]);
+    });
+    it('should copy all of the properties in the source object(s) over to the destination object, and return the destination object', function () {
+      expect(_.extend({ name: 'Eric', age: 7 }, { breed: 'border terrier' })).to.eql({ name: 'Eric', age: 7, breed: 'border terrier' });
+      expect(_.extend({ name: 'Nellie' }, { age: 3 }, { paws: 4 })).to.eql({ name: 'Nellie', age: 3, paws: 4 });
+      expect(_.extend({ name: 'Nellie' }, { age: 3, description: { colour: 'tabby', paws: 4 } })).to.eql({ name: 'Nellie', age: 3, description: { colour: 'tabby', paws: 4 } });
+      expect(_.extend({}, { type: 'fruit', name: 'strawberry' }, { colour: 'red' })).to.eql({ type: 'fruit', name: 'strawberry', colour: 'red' });
+    });
+    it('should copy all of the properties in the source object to the destination object, with the last source overriding properties of the same name in previous arguments', function () {
+      expect(_.extend({ type: 'fruit', name: 'banana' }, { name: 'mango' })).to.eql({ type: 'fruit', name: 'mango' });
+      expect(_.extend({ type: 'chocolate', name: 'maltesers' }, { name: 'flake', price: '60p' }, { name: 'twirl' })).to.eql({ type: 'chocolate', name: 'twirl', price: '60p' });
+    });
+    it('should copy all of the properties in the source objects over to the destination array, and return the destination array', function () {
+      var expected = ['Nellie', 3];
+      expected.colour = 'tabby';
+      expect(_.extend(['Nellie', 3], { colour: 'tabby' })).to.eql(expected);
     });
   });
 });
