@@ -162,8 +162,12 @@ _.some = function (list, predicate) {
   return false;
 };
 
-_.extend = function (destination, sources) {
-  return Object.assign(destination, sources);
+_.extend = function (destination) {
+  if (typeof destination === 'object' && destination !== null) {
+   let sources = [].slice.call(arguments, 1);
+    return Object.assign(destination, ...sources);
+  }
+  return destination;
 };
 
 if (typeof module !== 'undefined') {
