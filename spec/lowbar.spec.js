@@ -347,8 +347,11 @@ describe('_', function () {
     it('should be a function', function () {
       expect(_.defaults).to.be.a('function');
     });
-    it('should fill in undefined properties in object with the first value present in the list of defaults objects', function () {
-      expect(_.defaults({flavour: 'chocolate'}, {flavour: 'vanilla', sprinkles: 'lots'})).to.eql({flavour: 'chocolate', sprinkles: 'lots'});
+    it('should return the object with undefined properties filled in with the first value present in the default object', function () {
+      expect(_.defaults({ flavour: 'chocolate' }, { flavour: 'vanilla', sprinkles: 'lots' })).to.eql({ flavour: 'chocolate', sprinkles: 'lots' });
+    });
+    it('should return the object with undefined properties filled in with the first value present in a list of defaults objects', function () {
+      expect(_.defaults({ flavour: 'chocolate' }, { flavour: 'vanilla', sprinkles: 'lots' }, {flavour: 'pistachio', syrup: 'strawberry'})).to.eql({ flavour: 'chocolate', sprinkles: 'lots', syrup: 'strawberry'});
     });
   });
 });
