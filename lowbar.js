@@ -164,10 +164,14 @@ _.some = function (list, predicate) {
 
 _.extend = function (destination) {
   if (typeof destination === 'object' && destination !== null) {
-   let sources = [].slice.call(arguments, 1);
+    let sources = [].slice.call(arguments, 1);
     return Object.assign(destination, ...sources);
   }
   return destination;
+};
+
+_.defaults = function (object) {
+  return object;
 };
 
 if (typeof module !== 'undefined') {
