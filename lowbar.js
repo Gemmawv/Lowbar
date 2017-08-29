@@ -162,6 +162,10 @@ _.some = function (list, predicate) {
   return false;
 };
 
+_.extend = function (destination, sources) {
+  return Object.assign(destination, sources);
+};
+
 if (typeof module !== 'undefined') {
   module.exports = _;
 }
