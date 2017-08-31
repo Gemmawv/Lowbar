@@ -188,7 +188,7 @@ _.once = function (func) {
     if (firstCall) {
       firstCall = false;
 
-      return func();
+      return func.apply(null, arguments);
     }
   };
 };
