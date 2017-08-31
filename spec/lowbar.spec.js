@@ -1,8 +1,8 @@
 /* global describe, it */
-var path = require('path');
-var expect = require('chai').expect;
-
-var _ = require(path.join(__dirname, '..', './lowbar.js'));
+const path = require('path');
+const expect = require('chai').expect;
+const sinon = require('sinon');
+const _ = require(path.join(__dirname, '..', './lowbar.js'));
 
 describe('_', function () {
   'use strict';
@@ -310,6 +310,7 @@ describe('_', function () {
       expect(_.some({ a: 3, b: 17, c: 10 }, function (num) { return num % 6 === 0; })).to.equal(false);
     });
   });
+
   describe('#extend', function () {
     it('should be a function', function () {
       expect(_.extend).to.be.a('function');
@@ -343,6 +344,7 @@ describe('_', function () {
       expect(_.extend(['Nellie', 3], { colour: 'tabby' })).to.eql(expected);
     });
   });
+
   describe('#defaults', function () {
     it('should be a function', function () {
       expect(_.defaults).to.be.a('function');
@@ -369,7 +371,22 @@ describe('_', function () {
     it('should return the array with any undefined values filled in with corresponding information from the defaults object(s)', function () {
       let expected = ['cat', 'dog'];
       expected.pet = 'parrot';
-      expect(_.defaults(['cat', 'dog'], {pet: 'parrot'})).to.eql(expected);
+      expect(_.defaults(['cat', 'dog'], { pet: 'parrot' })).to.eql(expected);
+    });
+  });
+
+
+  describe('#once', function () {
+    it('should be a function', function () {
+      expect(_.once).to.be.a('function');
+    });
+    it('should only allow the function to be called once', function () {
+      let mySpy = sinon.spy();
+      let mySpyOnce = _.once(mySpy);
+      mySpyOnce();
+      mySpyOnce();
+      mySpyOnce();
+      expect(mySpy.callCount).to.equal(1);
     });
   });
 });
