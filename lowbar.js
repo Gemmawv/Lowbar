@@ -183,14 +183,16 @@ _.defaults = function (object) {
 
 _.once = function (func) {
   let firstCall = true;
+  let result;
 
   return function () {
     if (firstCall) {
       firstCall = false;
-
-      return func.apply(null, arguments);
+      result = func.apply(null, arguments);
     }
+    return result;
   };
+  
 };
 
 if (typeof module !== 'undefined') {
