@@ -1,4 +1,4 @@
-var _ = {};
+const _ = {};
 
 _.identity = function (value) {
   return value;
@@ -179,6 +179,18 @@ _.defaults = function (object) {
     }
   }
   return object;
+};
+
+_.once = function (func) {
+  let firstCall = true;
+
+  return function () {
+    if (firstCall) {
+      firstCall = false;
+
+      return func();
+    }
+  };
 };
 
 if (typeof module !== 'undefined') {
