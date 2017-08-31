@@ -394,5 +394,13 @@ describe('_', function () {
       mySpyOnce(1, 2, 3);
       expect(mySpy.calledWithExactly(1, 2, 3)).to.equal(true);
     });
+    it('should always return the result of the first invocation', function () {
+      let identityOnce = _.once(_.identity);
+      let results = [];
+      results.push(identityOnce(1));
+      results.push(identityOnce(2));
+      results.push(identityOnce(3));
+      expect(results).to.eql([1, 1, 1]);
+    });
   });
 });
