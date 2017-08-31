@@ -388,5 +388,11 @@ describe('_', function () {
       mySpyOnce();
       expect(mySpy.callCount).to.equal(1);
     });
+    it('should forward all the arguments from the returned function to the original function', function () {
+      let mySpy = sinon.spy();
+      let mySpyOnce = _.once(mySpy);
+      mySpyOnce(1, 2, 3);
+      expect(mySpy.calledWithExactly(1, 2, 3)).to.equal(true);
+    });
   });
 });
