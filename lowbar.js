@@ -196,13 +196,13 @@ _.once = function (func) {
 };
 
 _.memoize = function (func) {
-  const memoizedFunc = function (input) {
+  const memoizedFunc = function () {
     let result;
-    if (memoizedFunc.cache[input] !== undefined) {
-      result = memoizedFunc.cache[input];
+    if (memoizedFunc.cache[arguments[0]] !== undefined) {
+      result = memoizedFunc.cache[arguments[0]];
     } else {
-      result = func(input);
-      memoizedFunc.cache[input] = result;
+      result = func.apply(null, arguments);
+      memoizedFunc.cache[arguments[0]] = result;
     }
     return result;
   };
