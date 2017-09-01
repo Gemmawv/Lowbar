@@ -413,15 +413,15 @@ describe('_', function () {
       const memoizeDouble = _.memoize(double);
       expect(memoizeDouble(3)).to.eql(double(3));
       expect(memoizeDouble(3)).to.eql(double(3));
-      expect(memoizeDouble(3)).to.eql(double(3));      
+      expect(memoizeDouble(3)).to.eql(double(3));
     });
     it('should only call the given function once when called multiple times with the same first argument', function () {
       let counter = 0;
       const updateCounter = function (num) { return counter += num; };
       const memoizeUpdateCounter = _.memoize(updateCounter);
       memoizeUpdateCounter(1);
-      memoizeUpdateCounter(1); 
-      memoizeUpdateCounter(1);            
+      memoizeUpdateCounter(1);
+      memoizeUpdateCounter(1);
       expect(counter).to.equal(1);
     });
     it('should call the given function every time it is given a unique first argument', function () {
@@ -429,9 +429,16 @@ describe('_', function () {
       const mySpy = sinon.spy(double);
       const mySpyMemoize = _.memoize(mySpy);
       mySpyMemoize(1);
-      mySpyMemoize(2); 
-      mySpyMemoize(3);            
-      expect(mySpy.callCount).to.equal(3); 
+      mySpyMemoize(2);
+      mySpyMemoize(3);
+      expect(mySpy.callCount).to.equal(3);
+    });
+    it('should have access to multiple arguments passed in to the given function', function () {
+      const add = function (a, b) { return a + b; };
+      const mySpy = sinon.spy(add);
+      const mySpyMemoize = _.memoize(mySpy);
+      mySpyMemoize(2, 3);
+      expect(mySpy.calledWithExactly(2, 3)).to.equal(true);
     });
   });
 });
