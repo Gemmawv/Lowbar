@@ -195,14 +195,19 @@ _.once = function (func) {
 
 };
 
-_.memoize = function (func) {
+_.memoize = function (func, hashFunction) {
+  hashFunction = hashFunction || function () {
+    return arguments[0];
+  };
   const memoizedFunc = function () {
     let result;
-    if (memoizedFunc.cache[arguments[0]] !== undefined) {
-      result = memoizedFunc.cache[arguments[0]];
+    let key = hashFunction.apply(null, arguments);
+    // if(memoizedFunc.cache[hashFunction()])
+    if (memoizedFunc.cache[key] !== undefined) {
+      result = memoizedFunc.cache[key];
     } else {
       result = func.apply(null, arguments);
-      memoizedFunc.cache[arguments[0]] = result;
+      memoizedFunc.cache[key] = result;
     }
     return result;
   };
