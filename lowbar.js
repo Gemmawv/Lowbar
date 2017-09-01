@@ -192,7 +192,22 @@ _.once = function (func) {
     }
     return result;
   };
-  
+
+};
+
+_.memoize = function (func) {
+  const memoizedFunc = function (input) {
+    let result;
+    memoizedFunc.cache = {};
+    if (memoizedFunc.cache[input] !== undefined) {
+      result = memoizedFunc.cache[input];
+    } else {
+      result = func(input);
+      memoizedFunc.cache[input] = result;
+    }
+    return result;
+  };
+  return memoizedFunc;
 };
 
 if (typeof module !== 'undefined') {
