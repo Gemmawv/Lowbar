@@ -440,5 +440,18 @@ describe('_', function () {
       mySpyMemoize(2, 3);
       expect(mySpy.calledWithExactly(2, 3)).to.equal(true);
     });
+    it('should use the hashFunction given to generate keys for the cached results', function () {
+      const add = function (a, b) { return a + b; };
+      function commaSeparateArgs () {
+        const args = [];
+        for (let i = 0; i < arguments.length; i++) {
+          args.push(arguments[i]);
+        }
+        return args.join(',');
+      }
+      const memoizeAdd = _.memoize(add, commaSeparateArgs);
+      expect(memoizeAdd(4, 1)).to.equal(5);
+      expect(memoizeAdd(4, 2)).to.equal(6);      
+    });
   });
 });
