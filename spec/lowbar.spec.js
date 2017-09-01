@@ -424,5 +424,14 @@ describe('_', function () {
       memoizeUpdateCounter(1);            
       expect(counter).to.equal(1);
     });
+    it('should call the given function every time it is given a unique first argument', function () {
+      const double = function (num) { return num * 2; };
+      const mySpy = sinon.spy(double);
+      const mySpyMemoize = _.memoize(mySpy);
+      mySpyMemoize(1);
+      mySpyMemoize(2); 
+      mySpyMemoize(3);            
+      expect(mySpy.callCount).to.equal(3); 
+    });
   });
 });
