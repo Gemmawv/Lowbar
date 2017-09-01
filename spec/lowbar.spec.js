@@ -415,5 +415,14 @@ describe('_', function () {
       expect(memoizeDouble(3)).to.eql(double(3));
       expect(memoizeDouble(3)).to.eql(double(3));      
     });
+    it('should only call the given function once when called multiple times with the same first argument', function () {
+      let counter = 0;
+      const updateCounter = function (num) { return counter += num; };
+      const memoizeUpdateCounter = _.memoize(updateCounter);
+      memoizeUpdateCounter(1);
+      memoizeUpdateCounter(1); 
+      memoizeUpdateCounter(1);            
+      expect(counter).to.equal(1);
+    });
   });
 });
