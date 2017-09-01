@@ -202,7 +202,6 @@ _.memoize = function (func, hashFunction) {
   const memoizedFunc = function () {
     let result;
     let key = hashFunction.apply(null, arguments);
-    // if(memoizedFunc.cache[hashFunction()])
     if (memoizedFunc.cache[key] !== undefined) {
       result = memoizedFunc.cache[key];
     } else {
