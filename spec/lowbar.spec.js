@@ -403,4 +403,17 @@ describe('_', function () {
       expect(results).to.eql([1, 1, 1]);
     });
   });
+
+  describe('#memoize', function () {
+    it('should be a function', function () {
+      expect(_.memoize).to.be.a('function');
+    });
+    it('should return the same value as the original function', function () {
+      const double = function (num) { return num * 2; };
+      const memoizeDouble = _.memoize(double);
+      expect(memoizeDouble(3)).to.eql(double(3));
+      expect(memoizeDouble(3)).to.eql(double(3));
+      expect(memoizeDouble(3)).to.eql(double(3));      
+    });
+  });
 });
