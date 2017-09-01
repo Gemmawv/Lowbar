@@ -198,7 +198,6 @@ _.once = function (func) {
 _.memoize = function (func) {
   const memoizedFunc = function (input) {
     let result;
-    memoizedFunc.cache = {};
     if (memoizedFunc.cache[input] !== undefined) {
       result = memoizedFunc.cache[input];
     } else {
@@ -207,6 +206,7 @@ _.memoize = function (func) {
     }
     return result;
   };
+  memoizedFunc.cache = {};
   return memoizedFunc;
 };
 
