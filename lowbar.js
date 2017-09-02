@@ -214,6 +214,19 @@ _.memoize = function (func, hashFunction) {
   return memoizedFunc;
 };
 
+_.shuffle = function (list) {
+  let originalList = list;
+  let shuffledList = [];
+
+  while (originalList.length > 0) {
+    let randomIndex = Math.floor(Math.random() * originalList.length);
+    shuffledList.push(originalList[randomIndex]);
+    originalList.splice(randomIndex, 1);
+  }
+  return shuffledList;
+};
+
+
 if (typeof module !== 'undefined') {
   module.exports = _;
 }
