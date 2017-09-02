@@ -455,16 +455,20 @@ describe('_', function () {
     });
   });
 
-  describe('#shuffle', function () {
+  describe.only('#shuffle', function () {
     it('should be a function', function () {
       expect(_.shuffle).to.be.a('function');
+    });
+    it('should return a blank array when given an invalid data type', function () {
+      expect(_.shuffle(123456)).to.eql([]);
+      expect(_.shuffle(true)).to.eql([]);
     });
     it('should return a shuffled list of the same length as the original list', function () {
       let arr = [1, 2, 3, 4, 5, 6];
       expect(_.shuffle(arr)).to.have.lengthOf(6);
     });
     it('should shuffle the order of values in the list each time it is called', function () {
-      let arr = [1, 2, 3, 4, 5, 6];      
+      let arr = [1, 2, 3, 4, 5, 6];
       let shuffle1 = _.shuffle(arr);
       let shuffle2 = _.shuffle(arr);
       expect(shuffle1).to.not.equal(shuffle2);
