@@ -442,7 +442,7 @@ describe('_', function () {
     });
     it('should use the hashFunction given to generate keys for the cached results', function () {
       const add = function (a, b) { return a + b; };
-      function commaSeparateArgs () {
+      function commaSeparateArgs() {
         const args = [];
         for (let i = 0; i < arguments.length; i++) {
           args.push(arguments[i]);
@@ -451,7 +451,23 @@ describe('_', function () {
       }
       const memoizeAdd = _.memoize(add, commaSeparateArgs);
       expect(memoizeAdd(4, 1)).to.equal(5);
-      expect(memoizeAdd(4, 2)).to.equal(6);      
+      expect(memoizeAdd(4, 2)).to.equal(6);
+    });
+  });
+
+  describe('#shuffle', function () {
+    it('should be a function', function () {
+      expect(_.shuffle).to.be.a('function');
+    });
+    it('should return a shuffled list of the same length as the original list', function () {
+      let arr = [1, 2, 3, 4, 5, 6];
+      expect(_.shuffle(arr)).to.have.lengthOf(6);
+    });
+    it('should shuffle the order of values in the list each time it is called', function () {
+      let arr = [1, 2, 3, 4, 5, 6];      
+      let shuffle1 = _.shuffle(arr);
+      let shuffle2 = _.shuffle(arr);
+      expect(shuffle1).to.not.equal(shuffle2);
     });
   });
 });
