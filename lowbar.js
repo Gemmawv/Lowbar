@@ -215,15 +215,17 @@ _.memoize = function (func, hashFunction) {
 };
 
 _.shuffle = function (list) {
+  if (typeof list !== 'object' && typeof list !== 'string') return [];
   let originalList = list;
   let shuffledList = [];
-
-  while (originalList.length > 0) {
-    let randomIndex = Math.floor(Math.random() * originalList.length);
-    shuffledList.push(originalList[randomIndex]);
-    originalList.splice(randomIndex, 1);
+  if (Array.isArray(list)) {
+    while (originalList.length > 0) {
+      let randomIndex = Math.floor(Math.random() * originalList.length);
+      shuffledList.push(originalList[randomIndex]);
+      originalList.splice(randomIndex, 1);
+    }
+    return shuffledList;
   }
-  return shuffledList;
 };
 
 
