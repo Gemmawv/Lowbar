@@ -466,21 +466,44 @@ describe('_', function () {
     it('should return a shuffled list of the same length as the original list', function () {
       let arr = [1, 2, 3, 4, 5, 6];
       expect(_.shuffle(arr)).to.have.lengthOf(6);
+      expect(_.shuffle(arr)).to.be.an('array');
     });
     it('should shuffle the order of values in the list each time it is called', function () {
       let arr = [1, 2, 3, 4, 5, 6];
       let shuffle1 = _.shuffle(arr);
       let shuffle2 = _.shuffle(arr);
+      expect(shuffle1).to.be.an('array');
+      expect(shuffle2).to.be.an('array');
       expect(shuffle1).to.not.equal(shuffle2);
     });
-    it('should return a shuffled string of the same length as the original string', function () {
-      expect(_.shuffle('Shuffle this!')).to.have.lengthOf(13);
-    });
-    it('should shuffle the order of characters in a string each time it is called', function () {
+    it('when given a string, should return an array of characters of the same length as the original string', function () {
       let str = 'Shuffle this!';
-      let str1 = _.shuffle(str);
-      let str2 = _.shuffle(str);
-      expect(str1).to.not.equal(str2);
+      expect(_.shuffle(str)).to.be.an('array');      
+      expect(_.shuffle(str)).to.have.lengthOf(13);
+    });
+    it('when given a string, should shuffle the order of characters each time it is called', function () {
+      let str = 'Shuffle this!';
+      let shuffledStr1 = _.shuffle(str);
+      let shuffledStr2 = _.shuffle(str);
+      expect(shuffledStr1).to.be.an('array');
+      expect(shuffledStr2).to.be.an('array');      
+      expect(shuffledStr1).to.not.equal(shuffledStr2);
+    });
+    it('when given an object, should return an array of values, the same length as the original object', function () {
+      let obj = {a: 23, b: 'cat', c: 5, d: '19', e: 'dog'};
+      let shuffledObj1 = _.shuffle(obj);
+      let shuffledObj2 = _.shuffle(obj);
+      let obj1Length = Object.keys(shuffledObj1).length;
+      let obj2Length = Object.keys(shuffledObj2).length;
+      expect(obj1Length).to.equal(obj2Length);
+    });
+    it ('when given an object, should shuffle the order of values each time it is called', function () {
+      let obj = {a: 999, b: 'banana', c: 'coconut', d: 87, e: 123};
+      let shuffledObj1 = _.shuffle(obj);
+      let shuffledObj2 = _.shuffle(obj);
+      expect(shuffledObj1).to.be.an('array');
+      expect(shuffledObj2).to.be.an('array');  
+      expect(shuffledObj1).to.not.equal(shuffledObj2);
     });
   });
 });
