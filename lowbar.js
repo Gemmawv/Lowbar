@@ -216,37 +216,26 @@ _.memoize = function (func, hashFunction) {
 
 _.shuffle = function (list) {
   if (typeof list !== 'object' && typeof list !== 'string') return [];
+
+  let originalList;
   let shuffledList = [];
 
   if (Array.isArray(list)) {
-    let originalList = list.slice();
-    while (originalList.length > 0) {
-      let randomIndex = Math.floor(Math.random() * originalList.length);
-      shuffledList.push(originalList[randomIndex]);
-      originalList.splice(randomIndex, 1);
-    }
-    return shuffledList;
+    originalList = list.slice();
   }
-
   else if (typeof list === 'string') {
-    let originalList = list.slice();
-    while (originalList.length > 0) {
-      let randomIndex = Math.floor(Math.random() * originalList.length);
-      shuffledList.push(originalList[randomIndex]);
-      originalList = originalList.slice(0, randomIndex).concat(originalList.slice(randomIndex + 1));
-    }
-    return shuffledList;
+    originalList = list.split('');
+  }
+  else if (typeof list === 'object' && list !== null) {
+    originalList = Object.values(list);
   }
 
-  else if (typeof list === 'object' && list !== null) {
-    let originalList = Object.values(list);
-    while (originalList.length > 0) {
-      let randomIndex = Math.floor(Math.random() * originalList.length);
-      shuffledList.push(originalList[randomIndex]);
-      originalList.splice(randomIndex, 1);
-    }
-    return shuffledList;
-  }
+  while (originalList.length > 0) {
+    let randomIndex = Math.floor(Math.random() * originalList.length);
+    shuffledList.push(originalList[randomIndex]);
+    originalList.splice(randomIndex, 1);
+  }  
+  return shuffledList;
 };
 
 
