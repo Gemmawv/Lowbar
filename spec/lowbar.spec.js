@@ -473,5 +473,14 @@ describe('_', function () {
       let shuffle2 = _.shuffle(arr);
       expect(shuffle1).to.not.equal(shuffle2);
     });
+    it('should return a shuffled string of the same length as the original string', function () {
+      expect(_.shuffle('Shuffle this!')).to.have.lengthOf(13);
+    });
+    it('should shuffle the order of characters in a string each time it is called', function () {
+      let str = 'Shuffle this!';
+      let str1 = _.shuffle(str);
+      let str2 = _.shuffle(str);
+      expect(str1).to.not.equal(str2);
+    });
   });
 });
