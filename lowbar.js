@@ -216,10 +216,10 @@ _.memoize = function (func, hashFunction) {
 
 _.shuffle = function (list) {
   if (typeof list !== 'object' && typeof list !== 'string') return [];
-  let originalList = list;
-  
+  let shuffledList = [];
+
   if (Array.isArray(list)) {
-    let shuffledList = [];
+    let originalList = list.slice();
     while (originalList.length > 0) {
       let randomIndex = Math.floor(Math.random() * originalList.length);
       shuffledList.push(originalList[randomIndex]);
@@ -227,12 +227,23 @@ _.shuffle = function (list) {
     }
     return shuffledList;
   }
+
   else if (typeof list === 'string') {
-    let shuffledList = '';
+    let originalList = list.slice();
     while (originalList.length > 0) {
       let randomIndex = Math.floor(Math.random() * originalList.length);
-      shuffledList = shuffledList + originalList[randomIndex];
+      shuffledList.push(originalList[randomIndex]);
       originalList = originalList.slice(0, randomIndex).concat(originalList.slice(randomIndex + 1));
+    }
+    return shuffledList;
+  }
+
+  else if (typeof list === 'object' && list !== null) {
+    let originalList = Object.values(list);
+    while (originalList.length > 0) {
+      let randomIndex = Math.floor(Math.random() * originalList.length);
+      shuffledList.push(originalList[randomIndex]);
+      originalList.splice(randomIndex, 1);
     }
     return shuffledList;
   }
