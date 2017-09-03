@@ -455,7 +455,7 @@ describe('_', function () {
     });
   });
 
-  describe.only('#shuffle', function () {
+  describe('#shuffle', function () {
     it('should be a function', function () {
       expect(_.shuffle).to.be.a('function');
     });
@@ -493,9 +493,7 @@ describe('_', function () {
       let obj = {a: 23, b: 'cat', c: 5, d: '19', e: 'dog'};
       let shuffledObj1 = _.shuffle(obj);
       let shuffledObj2 = _.shuffle(obj);
-      let obj1Length = Object.keys(shuffledObj1).length;
-      let obj2Length = Object.keys(shuffledObj2).length;
-      expect(obj1Length).to.equal(obj2Length);
+      expect(shuffledObj1.length).to.equal(shuffledObj2.length);
     });
     it ('when given an object, should shuffle the order of values each time it is called', function () {
       let obj = {a: 999, b: 'banana', c: 'coconut', d: 87, e: 123};
