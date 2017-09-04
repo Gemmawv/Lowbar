@@ -504,4 +504,13 @@ describe('_', function () {
       expect(shuffledObj1).to.not.equal(shuffledObj2);
     });
   });
+
+  describe('#invoke', function () {
+    it('should be a function', function () {
+      expect(_.invoke).to.be.a('function');
+    });
+    it('should return a sorted list of values when passed methodName sort', function () {
+      expect(_.invoke([[5, 1, 7], [3, 2, 1]], 'sort')).to.eql([[1, 5, 7], [1, 2, 3]]);
+    });
+  });
 });
