@@ -478,7 +478,7 @@ describe('_', function () {
     });
     it('when given a string, should return an array of characters of the same length as the original string', function () {
       let str = 'Shuffle this!';
-      expect(_.shuffle(str)).to.be.an('array');      
+      expect(_.shuffle(str)).to.be.an('array');
       expect(_.shuffle(str)).to.have.lengthOf(13);
     });
     it('when given a string, should shuffle the order of characters each time it is called', function () {
@@ -486,21 +486,21 @@ describe('_', function () {
       let shuffledStr1 = _.shuffle(str);
       let shuffledStr2 = _.shuffle(str);
       expect(shuffledStr1).to.be.an('array');
-      expect(shuffledStr2).to.be.an('array');      
+      expect(shuffledStr2).to.be.an('array');
       expect(shuffledStr1).to.not.equal(shuffledStr2);
     });
     it('when given an object, should return an array of values, the same length as the original object', function () {
-      let obj = {a: 23, b: 'cat', c: 5, d: '19', e: 'dog'};
+      let obj = { a: 23, b: 'cat', c: 5, d: '19', e: 'dog' };
       let shuffledObj1 = _.shuffle(obj);
       let shuffledObj2 = _.shuffle(obj);
       expect(shuffledObj1.length).to.equal(shuffledObj2.length);
     });
-    it ('when given an object, should shuffle the order of values each time it is called', function () {
-      let obj = {a: 999, b: 'banana', c: 'coconut', d: 87, e: 123};
+    it('when given an object, should shuffle the order of values each time it is called', function () {
+      let obj = { a: 999, b: 'banana', c: 'coconut', d: 87, e: 123 };
       let shuffledObj1 = _.shuffle(obj);
       let shuffledObj2 = _.shuffle(obj);
       expect(shuffledObj1).to.be.an('array');
-      expect(shuffledObj2).to.be.an('array');  
+      expect(shuffledObj2).to.be.an('array');
       expect(shuffledObj1).to.not.equal(shuffledObj2);
     });
   });
@@ -508,6 +508,12 @@ describe('_', function () {
   describe('#invoke', function () {
     it('should be a function', function () {
       expect(_.invoke).to.be.a('function');
+    });
+    it('should return an empty array if given an invalid data type', function () {
+      expect(_.invoke(6413, 'sort')).to.eql([]);
+      expect(_.invoke(false, 'sort')).to.eql([]);
+      expect(_.invoke('string', 'sort')).to.eql([]);
+      expect(_.invoke({ a: 954, b: 12, c: 145, d: 802 }, 'sort')).to.eql([]);
     });
     it('should return a sorted list of values when passed methodName sort', function () {
       expect(_.invoke([[5, 1, 7], [3, 2, 1]], 'sort')).to.eql([[1, 5, 7], [1, 2, 3]]);
