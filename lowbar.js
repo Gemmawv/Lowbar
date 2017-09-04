@@ -239,6 +239,7 @@ _.shuffle = function (list) {
 };
 
 _.invoke = function (list, methodName) {
+  if (!Array.isArray(list)) return [];
   return _.map(list, function (item) {
     return item[methodName].call(item);
   });
