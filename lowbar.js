@@ -234,10 +234,15 @@ _.shuffle = function (list) {
     let randomIndex = Math.floor(Math.random() * originalList.length);
     shuffledList.push(originalList[randomIndex]);
     originalList.splice(randomIndex, 1);
-  }  
+  }
   return shuffledList;
 };
 
+_.invoke = function (list, methodName) {
+  return _.map(list, function (item) {
+    return item[methodName].call(item);
+  });
+};
 
 if (typeof module !== 'undefined') {
   module.exports = _;
