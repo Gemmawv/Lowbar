@@ -239,9 +239,12 @@ _.shuffle = function (list) {
 };
 
 _.invoke = function (list, methodName) {
-  if (!Array.isArray(list)) return [];
+  if (typeof list !== 'object') return [];
+
+  const args = [].slice.call(arguments, 2);
+  
   return _.map(list, function (item) {
-    return item[methodName].call(item);
+    return item[methodName].apply(item, args);
   });
 };
 
