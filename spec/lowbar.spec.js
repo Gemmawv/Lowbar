@@ -513,10 +513,16 @@ describe('_', function () {
       expect(_.invoke(6413, 'sort')).to.eql([]);
       expect(_.invoke(false, 'sort')).to.eql([]);
       expect(_.invoke('string', 'sort')).to.eql([]);
-      expect(_.invoke({ a: 954, b: 12, c: 145, d: 802 }, 'sort')).to.eql([]);
     });
     it('should return a sorted list of values when passed methodName sort', function () {
       expect(_.invoke([[5, 1, 7], [3, 2, 1]], 'sort')).to.eql([[1, 5, 7], [1, 2, 3]]);
+      expect(_.invoke([['string', 'this', 'reverse'], ['one!', 'this', 'and', '...']], 'reverse')).to.eql([['reverse', 'this', 'string'], ['...', 'and', 'this', 'one!']]);
+    });
+    it('should return an array of stringified object values when passed an object and methodName toString', function () {
+      expect(_.invoke({ a: 954, b: 12, c: 145, d: 802 }, 'toString')).to.eql(['954', '12', '145', '802']);
+    });
+    it('should forward any other arguments to the methodName and call that method on each value in the list', function () {
+      expect(_.invoke([['zero', 'one', 'two', 'three', 'four'], ['two', 'three', 'four', 'five']], 'slice', 1, 3)).to.eql([['one', 'two'], ['three', 'four']]);
     });
   });
 });
