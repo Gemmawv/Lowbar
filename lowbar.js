@@ -249,7 +249,17 @@ _.invoke = function (list, methodName) {
 };
 
 _.sortBy = function (list, iteratee) {
-  return list.sort(function (a, b) {
+  let listCopy;
+
+  if (typeof iteratee === 'function' && Array.isArray(list)) {
+    listCopy = list.slice();
+  }
+
+  else if (typeof iteratee === 'function' && typeof list === 'string') {
+    listCopy = list.split('');
+  }
+
+  return listCopy.sort(function (a, b) {
     return iteratee(a) - iteratee(b);
   });
 };
