@@ -530,6 +530,10 @@ describe('_', function () {
     it('should be a function', function () {
       expect(_.sortBy).to.be.a('function');
     });
+    it('should return an empty array if given an invalid data type', function () {
+      expect(_.sortBy(3214, function (num) { return num * 2; })).to.eql([]);
+      expect(_.sortBy(false, function (bool) { return bool === true; })).to.eql([]);
+    });
     it('should return a sorted copy of a list ranked in ascending order of the results of running each item through the given iteratee function', function () {
       const iteratee = function (num) { return Math.sin(num); };
       expect(_.sortBy([1, 2, 3, 4, 5, 6], iteratee)).to.eql([5, 4, 6, 3, 1, 2]);
