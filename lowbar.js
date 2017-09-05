@@ -252,15 +252,21 @@ _.sortBy = function (list, iteratee) {
   if (typeof list !== 'object' && typeof list !== 'string') return [];
 
   let listCopy;
-
-  if (typeof iteratee === 'function' && Array.isArray(list)) {
+  if (typeof iteratee === 'string') {
     listCopy = list.slice();
+    return listCopy.sort(function (a, b) {
+      if (a[iteratee] < b[iteratee]) return -1;
+      if (a[iteratee] > b[iteratee]) return 1;
+      return 0;
+    });
   }
 
+  else if (typeof iteratee === 'function' && Array.isArray(list)) {
+    listCopy = list.slice();
+  }
   else if (typeof iteratee === 'function' && typeof list === 'string') {
     listCopy = list.split('');
   }
-
   return listCopy.sort(function (a, b) {
     return iteratee(a) - iteratee(b);
   });
