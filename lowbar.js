@@ -249,6 +249,8 @@ _.invoke = function (list, methodName) {
 };
 
 _.sortBy = function (list, iteratee) {
+  if (typeof list !== 'object' && typeof list !== 'string') return [];
+
   let listCopy;
 
   if (typeof iteratee === 'function' && Array.isArray(list)) {
