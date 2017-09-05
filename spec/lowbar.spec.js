@@ -525,4 +525,14 @@ describe('_', function () {
       expect(_.invoke([['zero', 'one', 'two', 'three', 'four'], ['two', 'three', 'four', 'five']], 'slice', 1, 3)).to.eql([['one', 'two'], ['three', 'four']]);
     });
   });
+
+  describe('#sortBy', function () {
+    it('should be a function', function () {
+      expect(_.sortBy).to.be.a('function');
+    });
+    it('should return a sorted copy of a list ranked in ascending order of the results of running each item through the given iteratee function', function () {
+      const iteratee = function (num) { return Math.sin(num); };
+      expect(_.sortBy([1, 2, 3, 4, 5, 6], iteratee)).to.eql([5, 4, 6, 3, 1, 2]);
+    });
+  });
 });
