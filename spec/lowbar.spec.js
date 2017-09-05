@@ -534,5 +534,9 @@ describe('_', function () {
       const iteratee = function (num) { return Math.sin(num); };
       expect(_.sortBy([1, 2, 3, 4, 5, 6], iteratee)).to.eql([5, 4, 6, 3, 1, 2]);
     });
+    it('should return a sorted copy of a string ranked in order of the results of running each character through the given iteratee function', function () {
+      const iteratee = function (char) { return char.charCodeAt(); };
+      expect(_.sortBy('string', iteratee)).to.eql(['g', 'i', 'n', 'r', 's', 't']);
+    });
   });
 });
