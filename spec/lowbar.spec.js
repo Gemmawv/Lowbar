@@ -542,5 +542,9 @@ describe('_', function () {
       const iteratee = function (char) { return char.charCodeAt(); };
       expect(_.sortBy('string', iteratee)).to.eql(['g', 'i', 'n', 'r', 's', 't']);
     });
+    it('should return a copy of an object sorted by the given property name', function () {
+      const pets = [{ name: 'Soo', age: 4 }, { name: 'Eric', age: 7 }, { name: 'Nellie', age: 3 }];
+      expect(_.sortBy(pets, 'name')).to.eql([{ name: 'Eric', age: 7 }, { name: 'Nellie', age: 3 }, { name: 'Soo', age: 4 }]);
+    });
   });
 });
