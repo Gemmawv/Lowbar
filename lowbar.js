@@ -242,9 +242,15 @@ _.invoke = function (list, methodName) {
   if (typeof list !== 'object') return [];
 
   const args = [].slice.call(arguments, 2);
-  
+
   return _.map(list, function (item) {
     return item[methodName].apply(item, args);
+  });
+};
+
+_.sortBy = function (list, iteratee) {
+  return list.sort(function (a, b) {
+    return iteratee(a) - iteratee(b);
   });
 };
 
