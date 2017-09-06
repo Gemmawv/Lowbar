@@ -547,4 +547,13 @@ describe('_', function () {
       expect(_.sortBy(pets, 'name')).to.eql([{ name: 'Eric', age: 7 }, { name: 'Nellie', age: 3 }, { name: 'Soo', age: 4 }]);
     });
   });
+
+  describe('#zip', function () {
+    it('should be a function', function () {
+      expect(_.zip).to.be.a('function');
+    });
+    it('should merge together the values of each of the given arrays with the values at the corresponding position', function () {
+      expect(_.zip(['blue', 'red', 'yellow'], [30, 40, 50], [true, false, false])).to.eql([['blue', 30, true], ['red', 40, false], ['yellow', 50, false]]);
+    });
+  });
 });
