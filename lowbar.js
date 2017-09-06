@@ -284,6 +284,14 @@ _.zip = function () {
   return finalArr;
 };
 
+_.sortedIndex = function (list, value) {
+  let copyList = list.slice();
+  copyList.push(value);
+  copyList.sort();
+
+  return _.indexOf(copyList, value);
+};
+
 
 if (typeof module !== 'undefined') {
   module.exports = _;
