@@ -285,6 +285,8 @@ _.zip = function () {
 };
 
 _.sortedIndex = function (list, value) {
+  if (!Array.isArray(list) && typeof list !== 'string') return 0;
+  
   let copyList = list.slice();
   copyList.push(value);
   copyList.sort();
