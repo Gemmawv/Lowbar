@@ -272,6 +272,32 @@ _.sortBy = function (list, iteratee) {
   });
 };
 
+_.zip = function () {
+
+  // create a finalArr to collect the required result
+  let finalArr = [];
+
+  // put all the given arguments into an array
+  let args = [].slice.apply(arguments);
+
+  // map over the array of arguments to access one array at a time
+   _.map(args, function (item) {
+
+    // map over each individual array to access one value at a time
+    _.map(item, function (value, index) {
+
+      // if the index position of the mapped value already exists in finalArr, add the value to the array at that position 
+      if (finalArr[index]) finalArr[index].push(value);
+
+      // if the index position of the mapped value does not already exist in finalArr, add a new array at that position containing the value  
+      else finalArr[index] = [value];
+
+    });
+  });
+   return finalArr;
+};
+
+
 if (typeof module !== 'undefined') {
   module.exports = _;
 }
