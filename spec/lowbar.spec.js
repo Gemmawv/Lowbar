@@ -552,11 +552,15 @@ describe('_', function () {
     it('should be a function', function () {
       expect(_.zip).to.be.a('function');
     });
+    it('should return a blank array when given an invalid data type', function () {
+      expect(_.zip(true)).to.eql([]);
+      expect(_.zip(1234)).to.eql([]);
+    });
     it('should merge together the values of each of the given arrays with the values at the corresponding position', function () {
       expect(_.zip(['blue', 'red', 'yellow'], [30, 40, 50], [true, false, false])).to.eql([['blue', 30, true], ['red', 40, false], ['yellow', 50, false]]);
     });
     it('should merge together the values of each of the given strings with the values at the corresponding position', function () {
-      expect(_.zip('green', 'white', 'black')).to.eql([['g','w', 'b'], ['r', 'h', 'l'], ['e', 'i', 'a'], ['e', 't', 'c'], ['n', 'e', 'k']]);
+      expect(_.zip('green', 'white', 'black')).to.eql([['g', 'w', 'b'], ['r', 'h', 'l'], ['e', 'i', 'a'], ['e', 't', 'c'], ['n', 'e', 'k']]);
     });
   });
 });
