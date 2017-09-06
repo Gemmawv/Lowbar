@@ -568,6 +568,11 @@ describe('_', function () {
     it('should be a function', function () {
       expect(_.sortedIndex).to.be.a('function');
     });
+    it('should return 0 if given an invalid data type', function () {
+      expect(_.sortedIndex(1345, 2)).to.equal(0);
+      expect(_.sortedIndex(true, false)).to.equal(0);
+      expect(_.sortedIndex({ a: 2, b: 4, c: 6, d: 10 }, { e: 8 })).to.equal(0);
+    });
     it('should return the index at which the value should be inserted into the sorted list', function () {
       expect(_.sortedIndex([10, 20, 30, 40, 50], 35)).to.equal(3);
       expect(_.sortedIndex(['a', 'e', 'o', 'u'], 'i')).to.equal(2);
