@@ -459,7 +459,7 @@ describe('_', function () {
     it('should be a function', function () {
       expect(_.shuffle).to.be.a('function');
     });
-    it('should return a blank array when given an invalid data type', function () {
+    it('should return an empty array when given an invalid data type', function () {
       expect(_.shuffle(123456)).to.eql([]);
       expect(_.shuffle(true)).to.eql([]);
     });
@@ -552,7 +552,7 @@ describe('_', function () {
     it('should be a function', function () {
       expect(_.zip).to.be.a('function');
     });
-    it('should return a blank array when given an invalid data type', function () {
+    it('should return an empty array when given an invalid data type', function () {
       expect(_.zip(true)).to.eql([]);
       expect(_.zip(1234)).to.eql([]);
     });
@@ -561,6 +561,16 @@ describe('_', function () {
     });
     it('should merge together the values of each of the given strings with the values at the corresponding position', function () {
       expect(_.zip('green', 'white', 'black')).to.eql([['g', 'w', 'b'], ['r', 'h', 'l'], ['e', 'i', 'a'], ['e', 't', 'c'], ['n', 'e', 'k']]);
+    });
+  });
+
+  describe.only('#sortedIndex', function () {
+    it('should be a function', function () {
+      expect(_.sortedIndex).to.be.a('function');
+    });
+    it('should return the index at which the value should be inserted into the sorted list', function () {
+      expect(_.sortedIndex([10, 20, 30, 40, 50], 35)).to.equal(3);
+      expect(_.sortedIndex(['a', 'e', 'o', 'u'], 'i')).to.equal(2);
     });
   });
 });
