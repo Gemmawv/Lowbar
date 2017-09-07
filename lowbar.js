@@ -19,16 +19,15 @@ _.last = function (arr, num) {
 _.each = function (list, iteratee) {
   if (!iteratee) return list;
   if (Array.isArray(list) || typeof list === 'string') {
-    for (var i = 0; i < list.length; i++) {
+    for (let i = 0; i < list.length; i++) {
       iteratee(list[i], i, list);
     }
 
   }
   else if (typeof list === 'object' && list !== null) {
-    for (var key in list) {
+    for (const key in list) {
       iteratee(list[key], key, list);
     }
-
   }
   return list;
 };
@@ -314,6 +313,7 @@ _.sortedIndex = function (list, value, iteratee) {
 
 _.flatten = function (array) {
   return _.reduce(array, function (acc, item) {
+    if (Array.isArray(item)) item = _.flatten(item);
     return acc.concat(item);
   }, []);
 };
