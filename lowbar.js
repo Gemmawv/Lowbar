@@ -250,7 +250,6 @@ _.invoke = function (list, methodName) {
 
 _.sortBy = function (list, iteratee) {
   if (typeof list !== 'object' && typeof list !== 'string') return [];
-
   let listCopy;
   if (typeof iteratee === 'string') {
     listCopy = list.slice();
@@ -284,16 +283,34 @@ _.zip = function () {
   return finalArr;
 };
 
-_.sortedIndex = function (list, value) {
+_.sortedIndex = function (list, value, iteratee) {
   if (!Array.isArray(list) && typeof list !== 'string') return 0;
-  
+
   let copyList = list.slice();
   copyList.push(value);
-  copyList.sort();
 
-  return _.indexOf(copyList, value);
+  if (arguments[2]) {
+    copyList = _.sortBy(copyList, iteratee);
+
+    let start = 0;
+    let end = copyList.length - 1;
+    let mid;
+    while (end >= start) {
+      mid = Math.floor((start + end) / 2);
+      if (copyList[mid][iteratee] === value[iteratee]) {
+        return mid;
+      }
+      else if (copyList[mid][iteratee] < value[iteratee]) {
+        start = mid + 1;
+      } else {
+        end = mid - 1;
+      }
+    }
+    return -1;
+
+  } else copyList.sort();
+  return _.indexOf(copyList, value, true);
 };
-
 
 if (typeof module !== 'undefined') {
   module.exports = _;
