@@ -593,6 +593,14 @@ describe('_', function () {
     it('should be a function', function () {
       expect(_.flatten).to.be.a('function');
     });
+    it('should return an empty array if gievn an invalid data type', function () {
+      expect(_.flatten(1234)).to.eql([]);
+      expect(_.flatten(false)).to.eql([]);
+      expect(_.flatten({ a: 'yes', b: 'no', c: 'maybe' })).to.eql([]);
+    });
+    it('should return an array of characters when given a string', function () {
+      expect(_.flatten('string')).to.eql(['s', 't', 'r', 'i', 'n', 'g']);
+    });
     it('should flatten an array with one level of nesting', function () {
       expect(_.flatten([[1, 2, 3], [4, 5, 6], [7, 8, 9]])).to.eql([1, 2, 3, 4, 5, 6, 7, 8, 9]);
     });
