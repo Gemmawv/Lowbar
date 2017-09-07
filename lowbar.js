@@ -312,6 +312,12 @@ _.sortedIndex = function (list, value, iteratee) {
   return _.indexOf(copyList, value, true);
 };
 
+_.flatten = function (array) {
+  return _.reduce(array, function (acc, item) {
+    return acc.concat(item);
+  }, []);
+};
+
 if (typeof module !== 'undefined') {
   module.exports = _;
 }
