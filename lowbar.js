@@ -312,6 +312,7 @@ _.sortedIndex = function (list, value, iteratee) {
 };
 
 _.flatten = function (array) {
+  if (!Array.isArray(array) && typeof array !== 'string') return [];
   return _.reduce(array, function (acc, item) {
     if (Array.isArray(item)) item = _.flatten(item);
     return acc.concat(item);
