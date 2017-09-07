@@ -311,10 +311,11 @@ _.sortedIndex = function (list, value, iteratee) {
   return _.indexOf(copyList, value, true);
 };
 
-_.flatten = function (array) {
+_.flatten = function (array, shallow) {
   if (!Array.isArray(array) && typeof array !== 'string') return [];
+
   return _.reduce(array, function (acc, item) {
-    if (Array.isArray(item)) item = _.flatten(item);
+    if ((!shallow) && Array.isArray(item)) item = _.flatten(item);
     return acc.concat(item);
   }, []);
 };
