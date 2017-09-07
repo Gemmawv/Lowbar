@@ -589,12 +589,16 @@ describe('_', function () {
     });
   });
 
-  describe('#flatten', function () {
+  describe.only('#flatten', function () {
     it('should be a function', function () {
       expect(_.flatten).to.be.a('function');
     });
     it('should flatten an array with one level of nesting', function () {
       expect(_.flatten([[1, 2, 3], [4, 5, 6], [7, 8, 9]])).to.eql([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+    });
+    it('should flatten an array with multiple levels of nesting', function () {
+      expect(_.flatten([1, [2], [3, [[4]]]])).to.eql([1, 2, 3, 4]);
+      expect(_.flatten(['flatten', [[['this',]], 'nested',], 'array'])).to.eql(['flatten', 'this', 'nested', 'array']);
     });
   });
 });
