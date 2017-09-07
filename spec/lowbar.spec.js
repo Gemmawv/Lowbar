@@ -593,7 +593,7 @@ describe('_', function () {
     it('should be a function', function () {
       expect(_.flatten).to.be.a('function');
     });
-    it('should return an empty array if gievn an invalid data type', function () {
+    it('should return an empty array if given an invalid data type', function () {
       expect(_.flatten(1234)).to.eql([]);
       expect(_.flatten(false)).to.eql([]);
       expect(_.flatten({ a: 'yes', b: 'no', c: 'maybe' })).to.eql([]);
@@ -607,6 +607,10 @@ describe('_', function () {
     it('should flatten an array with multiple levels of nesting', function () {
       expect(_.flatten([1, [2], [3, [[4]]]])).to.eql([1, 2, 3, 4]);
       expect(_.flatten(['flatten', [[['this',]], 'nested',], 'array'])).to.eql(['flatten', 'this', 'nested', 'array']);
+    });
+    it('should only flatten an array by a single level if passed a second [shallow] argument', function () {
+      expect(_.flatten([1, [2], [3, [[4]]]], true)).to.eql([1, 2, 3, [[4]]]);
+      expect(_.flatten(['flatten', [[['this',]], 'nested',], 'array', [['by'], ['one'], 'level']], true)).to.eql(['flatten', [['this',]], 'nested', 'array', ['by'], ['one'], 'level']);      
     });
   });
 });
