@@ -335,6 +335,19 @@ _.intersection = function () {
   return finalArr;
 };
 
+_.difference = function (array) {
+  let otherArrays = [].slice.call(arguments, 1);
+  let finalArr = [];
+
+  _.each(array, function (item) {
+    let isUnique = true;
+    _.each(otherArrays, function (arr) {
+      if (_.contains(arr, item)) isUnique = false;
+    });
+    if (isUnique && !_.contains(finalArr, item)) finalArr.push(item);
+  });
+  return finalArr;
+};
 
 if (typeof module !== 'undefined') {
   module.exports = _;
