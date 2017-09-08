@@ -589,7 +589,7 @@ describe('_', function () {
     });
   });
 
-  describe.only('#flatten', function () {
+  describe('#flatten', function () {
     it('should be a function', function () {
       expect(_.flatten).to.be.a('function');
     });
@@ -610,7 +610,21 @@ describe('_', function () {
     });
     it('should only flatten an array by a single level if passed a second [shallow] argument', function () {
       expect(_.flatten([1, [2], [3, [[4]]]], true)).to.eql([1, 2, 3, [[4]]]);
-      expect(_.flatten(['flatten', [[['this',]], 'nested',], 'array', [['by'], ['one'], 'level']], true)).to.eql(['flatten', [['this',]], 'nested', 'array', ['by'], ['one'], 'level']);      
+      expect(_.flatten(['flatten', [[['this',]], 'nested',], 'array', [['by'], ['one'], 'level']], true)).to.eql(['flatten', [['this',]], 'nested', 'array', ['by'], ['one'], 'level']);
+    });
+  });
+
+  describe.only('#intersection', function () {
+    it('should be a function', function () {
+      expect(_.intersection).to.be.a('function');
+    });
+    it('should return a blank array when given an invalid data type', function () {
+      expect(_.intersection(384, 789, 18)).to.eql([]);
+      expect(_.intersection(true, true, true)).to.eql([]);
+      expect(_.intersection({ a: 785, b: 'zebra' }, { a: 23, b: 'zebra', c: 99 }, { a: false, b: 'zebra' })).to.eql([]);
+    });
+    it('should return all items common to each array given', function () {
+      expect(_.intersection([1, 2, 3], [101, 2, 1, 10], [2, 1])).to.eql([1, 2]);
     });
   });
 });
