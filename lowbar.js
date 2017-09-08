@@ -326,13 +326,15 @@ _.intersection = function () {
   if (!Array.isArray(copyArrays[0]) && typeof copyArrays[0] !== 'string') return [];
 
   _.each(copyArrays[0], function (item) {
-    for (var i = 1; i < copyArrays.length; i++) {
-      if (!Array.isArray(copyArrays[i]) && typeof copyArrays[i] !== 'string') return [];
-      if (_.contains(copyArrays[i], item) && !_.contains(finalArr, item)) finalArr.push(item);
-    }
+    let isCommon = true;
+    _.each(copyArrays, function (arr) {
+      if (!_.contains(arr, item)) isCommon = false;
+    });
+    if (isCommon && !_.contains(finalArr, item)) finalArr.push(item);
   });
   return finalArr;
 };
+
 
 if (typeof module !== 'undefined') {
   module.exports = _;
