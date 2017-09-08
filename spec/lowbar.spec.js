@@ -585,7 +585,7 @@ describe('_', function () {
     });
     it('should insert the index at which the object should be inserted into the list', function () {
       var turtles = [{ name: 'Leonardo', age: 40 }, { name: 'Donatello', age: 60 }];
-      expect(_.sortedIndex(turtles, { name: 'Michaelangelo', age: 50 }, 'age')).to.equal(1);
+      expect(_.sortedIndex(turtles, { name: 'Michelangelo', age: 50 }, 'age')).to.equal(1);
     });
   });
 
@@ -640,8 +640,18 @@ describe('_', function () {
     it('should be a function', function () {
       expect(_.difference).to.be.a('function');
     });
+    it('should return a blank array when given an invalid data type', function () {
+      expect(_.difference(789, 17, 3)).to.eql([]);
+      expect(_.difference(true, false, false)).to.eql([]);
+    });
     it('should return any values from the first array that are not present in any other arrays given', function () {
       expect(_.difference([1, 2, 3, 4, 5], [5, 2, 10])).to.eql([1, 3, 4]);
+      expect(_.difference([1, 2, 3, 4, 5], [5, 2, 10], [3, 11, 5])).to.eql([1, 4]);
+      expect(_.difference('leonardo', 'raphael', 'donatello', 'michelangelo')).to.eql(['l', 'e', 'o', 'n', 'a', 'r', 'd', 'o']);
+    });
+    it('should return a split string when given a string instead of an array', function () {
+      expect(_.difference('leonardo', 'raphael', 'donatello', 'michelangelo')).to.eql(['l', 'e', 'o', 'n', 'a', 'r', 'd', 'o']);
+      expect(_.difference('one', 'two', 'three')).to.eql(['o', 'n', 'e']);
     });
   });
 });
