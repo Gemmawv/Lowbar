@@ -614,7 +614,7 @@ describe('_', function () {
     });
   });
 
-  describe.only('#intersection', function () {
+  describe('#intersection', function () {
     it('should be a function', function () {
       expect(_.intersection).to.be.a('function');
     });
@@ -632,7 +632,16 @@ describe('_', function () {
       expect(_.intersection('sooty', 'sweep', 'soo')).to.eql(['s']);
     });
     it('should return all items common to each array/object given when given a mix of items beginning with an array', function () {
-      expect(_.intersection([1, 2, 3], [101, 2, 1, 10, 3], {a: 3, b: 2, c: 35})).to.eql([2, 3]);
+      expect(_.intersection([1, 2, 3], [101, 2, 1, 10, 3], { a: 3, b: 2, c: 35 })).to.eql([2, 3]);
+    });
+  });
+
+  describe.only('#difference', function () {
+    it('should be a function', function () {
+      expect(_.difference).to.be.a('function');
+    });
+    it('should return any values from the first array that are not present in any other arrays given', function () {
+      expect(_.difference([1, 2, 3, 4, 5], [5, 2, 10])).to.eql([1, 3, 4]);
     });
   });
 });
