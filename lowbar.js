@@ -320,6 +320,18 @@ _.flatten = function (array, shallow) {
   }, []);
 };
 
+_.intersection = function () {
+  let copyArrays = [].slice.call(arguments);
+  let finalArr = [];
+
+  _.each(copyArrays[0], function (item) {
+    for (var i = 1; i < copyArrays.length; i++) {
+      if (_.contains(copyArrays[i], item) && !_.contains(finalArr, item)) finalArr.push(item);
+    }
+  });
+  return finalArr;
+};
+
 if (typeof module !== 'undefined') {
   module.exports = _;
 }
