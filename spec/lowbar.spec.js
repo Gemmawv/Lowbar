@@ -625,6 +625,15 @@ describe('_', function () {
     });
     it('should return all items common to each array given', function () {
       expect(_.intersection([1, 2, 3], [101, 2, 1, 10], [2, 1])).to.eql([1, 2]);
+      expect(_.intersection(['cat', 2, 3, false], [false, 2, 'cat', 10, true, 99], [2, 'cat', 'dog', false, 'mouse'])).to.eql(['cat', 2, false]);
+    });
+    it('should return all characters common to each string given', function () {
+      expect(_.intersection('triceratops', 'tyrannosaurus rex', 'brontosaurus')).to.eql(['t', 'r', 'a', 'o', 's']);
+      expect(_.intersection('sooty', 'sweep', 'soo')).to.eql(['s']);
+    });
+    it('should return all items common to each array/object given when given a mix of items beginning with an array', function () {
+      expect(_.intersection([1, 2, 3], [101, 2, 1, 10, 3], {a: 3, b: 2, c: 35})).to.eql([2, 3]);
     });
   });
 });
+
