@@ -323,9 +323,11 @@ _.flatten = function (array, shallow) {
 _.intersection = function () {
   let copyArrays = [].slice.call(arguments);
   let finalArr = [];
+  if (!Array.isArray(copyArrays[0]) && typeof copyArrays[0] !== 'string') return [];
 
   _.each(copyArrays[0], function (item) {
     for (var i = 1; i < copyArrays.length; i++) {
+      if (!Array.isArray(copyArrays[i]) && typeof copyArrays[i] !== 'string') return [];
       if (_.contains(copyArrays[i], item) && !_.contains(finalArr, item)) finalArr.push(item);
     }
   });
