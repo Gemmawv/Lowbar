@@ -647,11 +647,14 @@ describe('_', function () {
     it('should return any values from the first array that are not present in any other arrays given', function () {
       expect(_.difference([1, 2, 3, 4, 5], [5, 2, 10])).to.eql([1, 3, 4]);
       expect(_.difference([1, 2, 3, 4, 5], [5, 2, 10], [3, 11, 5])).to.eql([1, 4]);
-      expect(_.difference('leonardo', 'raphael', 'donatello', 'michelangelo')).to.eql(['l', 'e', 'o', 'n', 'a', 'r', 'd', 'o']);
     });
     it('should return a split string when given a string instead of an array', function () {
       expect(_.difference('leonardo', 'raphael', 'donatello', 'michelangelo')).to.eql(['l', 'e', 'o', 'n', 'a', 'r', 'd', 'o']);
       expect(_.difference('one', 'two', 'three')).to.eql(['o', 'n', 'e']);
+    });
+    it('should return any unique values from the first array/object when given a mix of arrays/objects', function () {
+      expect(_.difference([1, 2, 3], [101, 2, 1, 10], { a: 6, b: 2, c: 35 })).to.eql([3]);
+      expect(_.difference({ a: 6, b: 2, c: 35 }, [1, 2, 3], [101, 2, 1, 10])).to.eql([6, 35]);      
     });
   });
 });
