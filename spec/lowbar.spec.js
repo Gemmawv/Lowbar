@@ -96,6 +96,13 @@ describe('_', function () {
       expect(_.each(null, function () { return count += 1; })).to.equal(null);
       expect(count).to.equal(0);
     });
+    it('should bind the iteratee function to the context object if one is given', function () {
+      const context = { num: 2 };
+      const result = [];
+      const iteratee = function () { result.push(context.num); };
+      _.each([1, 2, 3], iteratee, context);
+      expect(result).to.eql([2, 2, 2]);
+    });
   });
 
   describe('#indexOf', function () {
@@ -144,6 +151,13 @@ describe('_', function () {
       expect(_.filter({ a: 1, b: 2, c: 3, d: 4, e: 5, f: 6 }, function (num) { return num % 2 !== 0; })).to.eql([1, 3, 5]);
       expect(_.filter('Gemma', function (char) { return char === 'm'; })).to.eql(['m', 'm']);
     });
+    it('should bind the predicate function to the context object if one is given', function () {
+      const context = { num: 2 };
+      const result = [];
+      const predicate = function () { result.push(context.num); };
+      _.filter([1, 2, 3], predicate, context);
+      expect(result).to.eql([2, 2, 2]);
+    });
   });
 
   describe('#reject', function () {
@@ -158,6 +172,13 @@ describe('_', function () {
       expect(_.reject([1, 2, 3, 4, 5, 6], function (num) { return num % 2 === 0; })).to.eql([1, 3, 5]);
       expect(_.reject({ a: 1, b: 2, c: 3, d: 4, e: 5, f: 6 }, function (num) { return num % 2 !== 0; })).to.eql([2, 4, 6]);
       expect(_.reject('Northcoders', function (char) { return char === 'o'; })).to.eql(['N', 'r', 't', 'h', 'c', 'd', 'e', 'r', 's']);
+    });
+    it('should bind the predicate function to the context object if one is given', function () {
+      const context = { num: 2 };
+      const result = [];
+      const predicate = function () { result.push(context.num); };
+      _.reject([1, 2, 3], predicate, context);
+      expect(result).to.eql([2, 2, 2]);
     });
   });
 
@@ -202,6 +223,13 @@ describe('_', function () {
       expect(_.map([1, 2, 3], function (num) { return num * 3; })).to.eql([3, 6, 9]);
       expect(_.map({ a: 23, b: 99, c: 14 }, function (num) { return num - 2; })).to.eql([21, 97, 12]);
       expect(_.map('abc', function (char) { return char === 'b'; })).to.eql([false, true, false]);
+    });
+    it('should bind the iteratee function to the context object if one is given', function () {
+      const context = { num: 2 };
+      const result = [];
+      const iteratee = function () { result.push(context.num); };
+      _.map([1, 2, 3], iteratee, context);
+      expect(result).to.eql([2, 2, 2]);
     });
   });
 
@@ -269,6 +297,13 @@ describe('_', function () {
       expect(_.reduce([2, 4, 6, 8], function (memo, num) { return memo + num; })).to.equal(20);
       expect(_.reduce({ a: 3, b: 6, c: 9 }, function (memo, num) { return memo + num; })).to.equal(18);
     });
+    it('should bind the iteratee function to the context object if one is given', function () {
+      const context = { num: 2 };
+      const result = [];
+      const iteratee = function () { result.push(context.num); };
+      _.reduce([1, 2, 3], iteratee, context);
+      expect(result).to.eql([2, 2, 2]);
+    });
   });
 
   describe('#every', function () {
@@ -289,6 +324,13 @@ describe('_', function () {
       expect(_.every({ a: 5, b: 10, c: 15 }, function (num) { return num % 2 === 0; })).to.equal(false);
       expect(_.every('moonbeam', function (char) { return char === 'o'; })).to.equal(false);
     });
+    it('should bind the predicate function to the context object if one is given', function () {
+      const context = { num: 2 };
+      const result = [];
+      const predicate = function () { result.push(context.num); };
+      _.every([1, 2, 3], predicate, context);
+      expect(result).to.eql([2, 2, 2]);
+    });
   });
 
   describe('#some', function () {
@@ -308,6 +350,13 @@ describe('_', function () {
       expect(_.some([1, 3, 6], function (num) { return num > 9; })).to.equal(false);
       expect(_.some('orange', function (char) { return char === 'l'; })).to.equal(false);
       expect(_.some({ a: 3, b: 17, c: 10 }, function (num) { return num % 6 === 0; })).to.equal(false);
+    });
+    it('should bind the predicate function to the context object if one is given', function () {
+      const context = { num: 2 };
+      const result = [];
+      const predicate = function () { result.push(context.num); };
+      _.some([1, 2, 3], predicate, context);
+      expect(result).to.eql([2, 2, 2]);
     });
   });
 
@@ -636,7 +685,7 @@ describe('_', function () {
     });
   });
 
-  describe.only('#difference', function () {
+  describe('#difference', function () {
     it('should be a function', function () {
       expect(_.difference).to.be.a('function');
     });
@@ -654,8 +703,7 @@ describe('_', function () {
     });
     it('should return any unique values from the first array/object when given a mix of arrays/objects', function () {
       expect(_.difference([1, 2, 3], [101, 2, 1, 10], { a: 6, b: 2, c: 35 })).to.eql([3]);
-      expect(_.difference({ a: 6, b: 2, c: 35 }, [1, 2, 3], [101, 2, 1, 10])).to.eql([6, 35]);      
+      expect(_.difference({ a: 6, b: 2, c: 35 }, [1, 2, 3], [101, 2, 1, 10])).to.eql([6, 35]);
     });
   });
 });
-
