@@ -16,7 +16,8 @@ _.last = function (arr, num) {
   if (typeof arr === 'string') return arr.split('').slice(num - 1);
 };
 
-_.each = function (list, iteratee) {
+_.each = function (list, iteratee, context) {
+  if (context) iteratee = iteratee.bind(context);
   if (!iteratee) return list;
   if (Array.isArray(list) || typeof list === 'string') {
     for (let i = 0; i < list.length; i++) {
@@ -59,7 +60,8 @@ _.indexOf = function (array, value, isSorted) {
   return -1;
 };
 
-_.filter = function (list, predicate) {
+_.filter = function (list, predicate, context) {
+  if (context) predicate = predicate.bind(context);
   let filteredList = [];
   _.each(list, function (item) {
     if (predicate(item)) {
@@ -69,7 +71,8 @@ _.filter = function (list, predicate) {
   return filteredList;
 };
 
-_.reject = function (list, predicate) {
+_.reject = function (list, predicate, context) {
+  if (context) predicate = predicate.bind(context);
   let filteredList = [];
   _.each(list, function (item) {
     if (predicate(item) === false) {
@@ -89,7 +92,8 @@ _.uniq = function (array, isSorted) {
   return uniqueList;
 };
 
-_.map = function (list, iteratee) {
+_.map = function (list, iteratee, context) {
+  if (context) iteratee = iteratee.bind(context);  
   let newList = [];
   _.each(list, function (item, index, list) {
     newList.push(iteratee(item, index, list));
@@ -110,7 +114,6 @@ _.contains = function (list, value, fromIndex) {
       if (list[key] === value) return true;
     }
   }
-
   return false;
 };
 
@@ -122,7 +125,8 @@ _.pluck = function (list, propertyName) {
   });
 };
 
-_.reduce = function (list, iteratee, memo) {
+_.reduce = function (list, iteratee, memo, context) {
+  if (context) iteratee = iteratee.bind(context);  
   _.each(list, function (item, i, list) {
     if (!memo) {
       memo = item;
@@ -133,7 +137,8 @@ _.reduce = function (list, iteratee, memo) {
   return memo;
 };
 
-_.every = function (list, predicate) {
+_.every = function (list, predicate, context) {
+  if (context) predicate = predicate.bind(context);  
   if (Array.isArray(list) || typeof list === 'string') {
     for (let i = 0; i < list.length; i++) {
       if (predicate(list[i]) === false) return false;
@@ -147,7 +152,8 @@ _.every = function (list, predicate) {
   return true;
 };
 
-_.some = function (list, predicate) {
+_.some = function (list, predicate, context) {
+  if (context) predicate = predicate.bind(context);  
   if (Array.isArray(list) || typeof list === 'string') {
     for (let i = 0; i < list.length; i++) {
       if (predicate(list[i])) return true;
@@ -191,7 +197,6 @@ _.once = function (func) {
     }
     return result;
   };
-
 };
 
 _.memoize = function (func, hashFunction) {
@@ -239,7 +244,6 @@ _.shuffle = function (list) {
 
 _.invoke = function (list, methodName) {
   if (typeof list !== 'object') return [];
-
   const args = [].slice.call(arguments, 2);
 
   return _.map(list, function (item) {
@@ -339,13 +343,13 @@ _.difference = function (array) {
   let otherArrays = [].slice.call(arguments, 1);
   let finalArr = [];
   if (typeof array === 'string') return array.split('');
-    _.each(array, function (item) {
-      let isUnique = true;
-      _.each(otherArrays, function (arr) {
-        if (_.contains(arr, item)) isUnique = false;
-      });
-      if (isUnique && !_.contains(finalArr, item)) finalArr.push(item);
+  _.each(array, function (item) {
+    let isUnique = true;
+    _.each(otherArrays, function (arr) {
+      if (_.contains(arr, item)) isUnique = false;
     });
+    if (isUnique && !_.contains(finalArr, item)) finalArr.push(item);
+  });
   return finalArr;
 };
 
