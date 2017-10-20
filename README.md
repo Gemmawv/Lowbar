@@ -21,7 +21,7 @@ npm install npm
 
 
 ## Installation
-To run tests, please clone the project and install dependencies.
+Please clone the project and install dependencies.
 
 1. Open a terminal and navigate to the folder in which you wish to save the project. Run the following command:
 ``` javascript
