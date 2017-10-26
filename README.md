@@ -3,11 +3,11 @@ A reimplementation of several methods from the Underscore JS library complete wi
 
 
 # General setup
-1. Make sure you have node installed. Open a terminal window and run:
+1. Make sure you are running version 7 or above of node. Open a terminal window and run:
 ``` javascript 
 node -v
 ```
-This command will tell you the version of node you have, if you have it installed already. If you do not have node installed, follow the installation instructions found here https://nodejs.org/en/download/package-manager/.
+This command will tell you the version of node you have, if you have it installed already. If you do not have node installed, or you do not have an up-to-date version, follow the installation instructions found here https://nodejs.org/en/download/package-manager/.
 
 
 2. Make sure you have npm installed. Open a terminal window and run:
